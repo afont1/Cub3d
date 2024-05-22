@@ -6,13 +6,13 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:35:13 by afont             #+#    #+#             */
-/*   Updated: 2024/05/22 09:53:25 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/22 13:02:48 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_init_map(t_data *data)
+void	ft_init_map_img(t_data *data)
 {
 	t_img	map_img;
 	int		i;
@@ -28,6 +28,7 @@ void	ft_init_map(t_data *data)
 							{1,0,0,0,0,0,0,1},
 							{1,1,1,1,1,1,1,1}};
 
+	ft_init_map_data(data, map_char);
 	map_img.img_ptr = mlx_new_image(data->mlx_ptr, MAP_SIZE, MAP_SIZE);
 	map_img.addr = mlx_get_data_addr(map_img.img_ptr, &map_img.bits_per_pixel, &map_img.line_length, &map_img.endian);
 	i = -1;
@@ -52,5 +53,19 @@ void	ft_init_map(t_data *data)
 			}
 		}
 	}
-	data->map = map_img;
+	data->map.img = map_img;
+}
+
+void	ft_init_map_data(t_data *data, char map_char[8][8])
+{
+	int i, j;
+	data->map.tab_map = malloc(sizeof(char *) * 8);
+	for (i = 0; i < 8; i++)
+	{
+		data->map.tab_map[i] = malloc(sizeof(char) * 8);
+		for (j = 0; j < 8; j++)
+		{
+			data->map.tab_map[i][j] = map_char[i][j];
+		}
+	}
 }

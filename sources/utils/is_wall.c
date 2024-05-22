@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_img.c                                         :+:      :+:    :+:   */
+/*   is_wall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/05/22 12:14:33 by afont            ###   ########.fr       */
+/*   Created: 2024/05/22 12:05:17 by afont             #+#    #+#             */
+/*   Updated: 2024/05/22 13:47:35 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_destroy_img(t_data *data)
+int	is_wall(t_data *data, double x, double y)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
-}
+	int	map_x;
+	int	map_y;
 
-void	ft_close_window(t_data *data)
-{
-	ft_destroy_img(data);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	free(data);
-	exit(0);
+	map_x = x / 64;
+	map_y = y / 64;
+	return (data->map.tab_map[map_y][map_x] == 1);
 }

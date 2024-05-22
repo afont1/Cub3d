@@ -7,6 +7,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = cub3d
 LIB = libft/libft.a
 MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11
+MATH_FLAGS = -lm
 TOTAL_FILES = $(words $(SRCS))
 
 all: $(NAME)
@@ -30,7 +31,7 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 $(NAME): $(OBJS) includes/cub3d.h
 	@make -C libft --no-print-directory
 	@printf "\033[2K\r"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) $(MATH_FLAGS) -o $(NAME)
 	@echo -n "   \033[37;42;1m$(NAME) created\033[0m\n"
 	@tput cnorm
 

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/22 10:07:19 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/22 13:42:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 typedef struct s_data	t_data;
 typedef struct s_img	t_img;
 typedef struct s_pos	t_pos;
+typedef struct s_map	t_map;
+
+
 
 struct	s_pos
 {
@@ -43,6 +46,13 @@ struct	s_img
 	t_pos		pos;
 };
 
+struct s_map
+{
+	char	**tab_map;
+	int		*size;
+	t_img	img;
+};
+
 struct	s_data
 {
 	void		*mlx_ptr;
@@ -50,32 +60,34 @@ struct	s_data
 	int			keys[256];
 	double		player_angle;
 	t_img		img;
-	t_img		map;
+	t_map		map;
 };
-
 
 /*	main	*/
 void	ft_cub3d(t_data *data, char *map);
 
 /*	utils	*/
 void	ft_protect_malloc(void *ptr);
+int		is_wall(t_data *data, double x, double y);
 
 /*	display	*/
 void	ft_pixel_put(t_img img, int x, int y, int color);
 t_img	ft_new_img(t_data *data, int width, int height, int x, int y);
 void	ft_put_image_to_window(t_data *data, t_img img, int color);
 void	ft_del_img(t_data *data);
-void	ft_render_map(t_data *data);
+void	ft_draw_map(t_data *data);
 
 /*	hook	*/
 int		ft_key_press(int key, t_data *data);
 int		ft_key_release(int key, t_data *data);
 int		ft_update(t_data *data);
-void	ft_move(t_data *data, int x_mv, int y_mv);
+void	ft_draw_cube(t_data *data, double angle);
+void	ft_draw_direction_line(t_data *data, int length, int color);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
-void	ft_init_map(t_data *data);
+void	ft_init_map_img(t_data *data);
+void	ft_init_map_data(t_data *data, char map_char[8][8]);
 
 /*	free	*/
 void	ft_close_window(t_data *data);
