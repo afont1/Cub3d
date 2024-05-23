@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/22 13:42:15 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/23 12:17:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct s_data	t_data;
 typedef struct s_img	t_img;
 typedef struct s_pos	t_pos;
 typedef struct s_map	t_map;
-
-
 
 struct	s_pos
 {
@@ -69,6 +67,7 @@ void	ft_cub3d(t_data *data, char *map);
 /*	utils	*/
 void	ft_protect_malloc(void *ptr);
 int		is_wall(t_data *data, double x, double y);
+double	ft_dist(double ax, double ay, double bx, double by);
 
 /*	display	*/
 void	ft_pixel_put(t_img img, int x, int y, int color);
@@ -92,5 +91,9 @@ void	ft_init_map_data(t_data *data, char map_char[8][8]);
 /*	free	*/
 void	ft_close_window(t_data *data);
 void	ft_destroy_img(t_data *data);
+
+/*	ray	*/
+void	ft_ray(t_data *data);
+void	draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_data *data);
 
 #endif
