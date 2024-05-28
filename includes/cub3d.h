@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/23 12:17:15 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:51:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void	ft_destroy_img(t_data *data);
 
 /*	ray	*/
 void	ft_ray(t_data *data);
-void	draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_data *data);
+void	ft_draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_data *data);
+void	ft_draw_circle(int x, int y, int r, int color, t_data *data);
+
+/*	wall	*/
+void	ft_init_wall(t_data *data, double dist, int nbr_ray);
+void	ft_draw_rectangle(t_data *data, float* list_height);
 
 #endif

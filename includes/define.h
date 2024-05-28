@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/05/23 13:07:46 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/28 09:48:38 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define CUBE_SIZE			10
 # define MAP_SIZE			512
 # define ANGLE_STEP			0.12
+# define FOV				120
 
 /* ************************************************************************** */
 /*	-colors                                                                   */
@@ -43,6 +44,6 @@
 # define M_PI				3.14159265358979323846
 # define M_PI2				M_PI / 2
 # define M_PI3				3 * M_PI / 2
-# define ONE_DR				0.0174533
+# define ONE_DR				0.0174533 / 2
 
 #endif

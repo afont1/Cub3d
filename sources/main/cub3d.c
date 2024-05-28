@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/05/22 12:36:28 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/24 10:59:08 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_cub3d(t_data *data, char *map)
 	
 	ft_init_map_img(data);
 	ft_draw_map(data);
-	data->img = ft_new_img(data, CUBE_SIZE, CUBE_SIZE, 100, 100);
+	data->img = ft_new_img(data, CUBE_SIZE, CUBE_SIZE, 256, 256);
 	ft_put_image_to_window(data, data->img, CUBE_COLOR);
 
 	mlx_hook(data->win_ptr, 2, 1L<<0, ft_key_press, data);
