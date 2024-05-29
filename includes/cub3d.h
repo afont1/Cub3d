@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 14:32:28 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/29 11:58:13 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "define.h"
+# include "../sources/GNL/get_next_line.h"
 
 typedef struct s_data		t_data;
 typedef struct s_img		t_img;
@@ -48,7 +52,7 @@ struct	s_img
 struct	s_map
 {
 	char	**tab_map;
-	int		*size;
+	int		width;
 	t_img	img;
 };
 
@@ -70,12 +74,13 @@ struct	s_data
 };
 
 /*	main	*/
-void	ft_cub3d(t_data *data, char *map);
+void	ft_cub3d(t_data *data, char *argv);
 
 /*	utils	*/
 void	ft_protect_malloc(void *ptr);
 int		is_wall(t_data *data, double x, double y);
 double	ft_dist(double ax, double ay, double bx, double by);
+int		ft_get_map_height(char *argv);
 
 /*	display	*/
 void	ft_pixel_put(t_img img, int x, int y, int color);
@@ -93,8 +98,8 @@ void	ft_draw_direction_line(t_data *data, int length, int color);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
-void	ft_init_map_img(t_data *data);
-void	ft_init_map_data(t_data *data, char map_char[8][8]);
+void	ft_init_map_img(t_data *data, char *argv);
+void	ft_init_map_data(t_data *data, char *argv);
 
 /*	free	*/
 void	ft_close_window(t_data *data);

@@ -36,7 +36,7 @@ $(NAME): $(OBJS) includes/cub3d.h
 	@tput cnorm
 
 run: $(NAME)
-	./$(NAME) asd
+	./$(NAME) Maps/map1.cub
 
 clean:
 	@make clean -C libft --no-print-directory

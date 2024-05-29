@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 14:41:16 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/29 12:02:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_init_wall(t_data *data, double dist_t, int nbr_ray, int is_vertical)
 	float			line_height;
 	// static float	list_height[FOV];
 
-	line_height = (WIN_HEIGHT * 64) / dist_t;
+	line_height = (WIN_HEIGHT * (WIN_HEIGHT / data->map.width)) / dist_t;
 	if (line_height > WIN_HEIGHT)
 		line_height = WIN_HEIGHT;
 	data->ray_data[nbr_ray].line_height = line_height;

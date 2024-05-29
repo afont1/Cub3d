@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wall.c                                          :+:      :+:    :+:   */
+/*   len_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 12:05:17 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 12:02:04 by afont            ###   ########.fr       */
+/*   Created: 2024/05/29 10:26:25 by afont             #+#    #+#             */
+/*   Updated: 2024/05/29 11:03:43 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	is_wall(t_data *data, double x, double y)
+int	ft_get_map_height(char *argv)
 {
-	int	map_x;
-	int	map_y;
+	int		height;
+	int		fd;
+	char	*line;
 
-	map_x = x / (WIN_HEIGHT / data->map.width);
-	map_y = y / (WIN_HEIGHT / data->map.width);
-	return (data->map.tab_map[map_y][map_x] == '1');
+	height = 0;
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error\nopen");
+		exit(EXIT_FAILURE);
+	}
+	line = get_next_line(fd);
+	while (line)
+	{
+		height++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+	close(fd);
+	return (height);
 }

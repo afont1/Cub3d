@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wall.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 12:05:17 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 12:02:04 by afont            ###   ########.fr       */
+/*   Created: 2024/05/29 09:41:45 by afont             #+#    #+#             */
+/*   Updated: 2024/05/29 10:06:24 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
 
-int	is_wall(t_data *data, double x, double y)
-{
-	int	map_x;
-	int	map_y;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
-	map_x = x / (WIN_HEIGHT / data->map.width);
-	map_y = y / (WIN_HEIGHT / data->map.width);
-	return (data->map.tab_map[map_y][map_x] == '1');
-}
+char	*get_next_line(int fd);
+int		is_newline(char *buff);
+char	*del_newline(char *buff);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*after_newline(char *buff);
+
+#endif

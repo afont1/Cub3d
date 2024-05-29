@@ -6,23 +6,22 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/05/24 10:59:08 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/29 12:01:45 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_cub3d(t_data *data, char *map)
+void	ft_cub3d(t_data *data, char *argv)
 {
-	(void)map;
 	data->mlx_ptr = mlx_init();
 	ft_protect_malloc(data->mlx_ptr);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	ft_protect_malloc(data->win_ptr);
-	
-	ft_init_map_img(data);
+
+	ft_init_map_img(data, argv);
 	ft_draw_map(data);
-	data->img = ft_new_img(data, CUBE_SIZE, CUBE_SIZE, 256, 256);
+	data->img = ft_new_img(data, CUBE_SIZE, CUBE_SIZE, (WIN_HEIGHT / data->map.width) + 10, (WIN_HEIGHT / data->map.width) + 10);
 	ft_put_image_to_window(data, data->img, CUBE_COLOR);
 
 	mlx_hook(data->win_ptr, 2, 1L<<0, ft_key_press, data);
