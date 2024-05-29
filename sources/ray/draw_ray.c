@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 09:51:07 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/28 14:32:16 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_ray(t_data *data)
 	int		mx;
 	int		my;
 	int		dof;
+	int		is_vertical;
 	double	rx;
 	double	ry;
 	double	ray_angle; //
@@ -136,12 +137,14 @@ void	ft_ray(t_data *data)
 			rx = vx;
 			ry = vy;
 			dist_t = dist_v;
+			is_vertical = 0;
 		}
 		if (dist_h < dist_v)
 		{
 			rx = hx;
 			ry = hy;
 			dist_t = dist_h;
+			is_vertical = 1;
 		}
 		ft_draw_line(data->img.pos.x + CUBE_SIZE / 2, data->img.pos.y + CUBE_SIZE / 2, rx, ry, 0xFF0000, 1, data);
 		ray_angle += ONE_DR;
@@ -155,7 +158,7 @@ void	ft_ray(t_data *data)
 		if (fish_eye > 2 * M_PI)
 			fish_eye -= 2 * M_PI;
 		dist_t *= cos(fish_eye);
-		ft_init_wall(data, dist_t, nbr_ray);
+		ft_init_wall(data, dist_t, nbr_ray, is_vertical);
 	}
 }
 

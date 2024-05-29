@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:35:13 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 09:38:55 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:17:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	ft_init_map_data(t_data *data, char map_char[8][8])
 {
 	int i, j;
 	data->map.tab_map = malloc(sizeof(char *) * 8);
+	ft_protect_malloc(data->map.tab_map);
 	for (i = 0; i < 8; i++)
 	{
 		data->map.tab_map[i] = malloc(sizeof(char) * 8);
+		ft_protect_malloc(data->map.tab_map[i]);
 		for (j = 0; j < 8; j++)
 		{
 			data->map.tab_map[i][j] = map_char[i][j];

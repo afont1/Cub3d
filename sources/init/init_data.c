@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/05/23 13:25:05 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:12:58 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@ void	ft_init_data(t_data *data)
 	while (++i < 256)
 		data->keys[i] = 0;
 	data->player_angle = 0;
+	data->ray_data = malloc(sizeof(t_ray_data) * FOV);
+	ft_protect_malloc(data->ray_data);
 }

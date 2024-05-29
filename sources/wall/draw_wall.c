@@ -6,26 +6,28 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 09:38:20 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/28 14:41:16 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_init_wall(t_data *data, double dist_t, int nbr_ray)
+void	ft_init_wall(t_data *data, double dist_t, int nbr_ray, int is_vertical)
 {
 	float			line_height;
-	static float	list_height[FOV];
+	// static float	list_height[FOV];
 
 	line_height = (WIN_HEIGHT * 64) / dist_t;
 	if (line_height > WIN_HEIGHT)
 		line_height = WIN_HEIGHT;
-	list_height[nbr_ray] = line_height;
+	data->ray_data[nbr_ray].line_height = line_height;
+	data->ray_data[nbr_ray].is_vertical = is_vertical;
+	// list_height[nbr_ray] = line_height;
 	if (nbr_ray == FOV - 1)
-		ft_draw_rectangle(data, list_height);
+		ft_draw_rectangle(data);
 }
 
-void	ft_draw_rectangle(t_data *data, float *list_height)
+void	ft_draw_rectangle(t_data *data)
 {
 	t_img	player_img;
 	int		i;
@@ -39,14 +41,27 @@ void	ft_draw_rectangle(t_data *data, float *list_height)
 	while (++k < FOV)
 	{
 		i = -1;
-		offset = (512 / 2) - (list_height[k] / 2);
-		while (++i < list_height[k])
+		offset = (512 / 2) - (data->ray_data[k].line_height / 2);
+		while (++i < data->ray_data[k].line_height)
 		{
 			j = -1;
 			while (++j < (512 / FOV))
 			{
-				ft_pixel_put(player_img, (k * (512 / FOV) + j), (i + offset), 0x00FF00);
+				if (data->ray_data[k].is_vertical == 1)
+					ft_pixel_put(player_img, (k * (512 / FOV) + j), (i + offset), 0x2e2e2e);
+				else
+					ft_pixel_put(player_img, (k * (512 / FOV) + j), (i + offset), 0x212121);
 			}
+		}
+		while (i < 512)
+		{
+			j = -1;
+			while (++j < (512 / FOV))
+			{
+				if ((i + offset) < 512)
+					ft_pixel_put(player_img, (k * (512 / FOV) + j), (i + offset), 0x474747);
+			}
+			i++;
 		}
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, player_img.img_ptr, 512, 0);

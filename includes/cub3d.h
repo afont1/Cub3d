@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 09:51:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/28 14:32:28 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include "../libft/libft.h"
 # include "define.h"
 
-typedef struct s_data	t_data;
-typedef struct s_img	t_img;
-typedef struct s_pos	t_pos;
-typedef struct s_map	t_map;
+typedef struct s_data		t_data;
+typedef struct s_img		t_img;
+typedef struct s_pos		t_pos;
+typedef struct s_map		t_map;
+typedef struct s_ray_data	t_ray_data;
 
 struct	s_pos
 {
@@ -44,11 +45,17 @@ struct	s_img
 	t_pos		pos;
 };
 
-struct s_map
+struct	s_map
 {
 	char	**tab_map;
 	int		*size;
 	t_img	img;
+};
+
+struct	s_ray_data
+{
+	float	line_height;
+	int		is_vertical;
 };
 
 struct	s_data
@@ -59,6 +66,7 @@ struct	s_data
 	double		player_angle;
 	t_img		img;
 	t_map		map;
+	t_ray_data	*ray_data;
 };
 
 /*	main	*/
@@ -98,7 +106,7 @@ void	ft_draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_da
 void	ft_draw_circle(int x, int y, int r, int color, t_data *data);
 
 /*	wall	*/
-void	ft_init_wall(t_data *data, double dist, int nbr_ray);
-void	ft_draw_rectangle(t_data *data, float* list_height);
+void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
+void	ft_draw_rectangle(t_data *data);
 
 #endif
