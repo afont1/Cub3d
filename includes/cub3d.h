@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/31 09:05:24 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 14:48:05 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
 typedef struct s_ray_data	t_ray_data;
 typedef struct s_coord		t_coord;
+typedef struct s_player		t_player;
 
 struct	s_pos
 {
@@ -71,13 +72,22 @@ struct	s_ray_data
 	int		is_vertical;
 };
 
+struct	s_player
+{
+	int		color;
+	int		radius;
+	double	angle;
+	double	angle_step;
+	t_pos	pos;
+};
+
 struct	s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			keys[256];
 	double		player_angle;
-	t_img		img;
+	t_player	player;
 	t_map		map;
 	t_ray_data	*ray_data;
 };
@@ -94,22 +104,21 @@ double	ft_angle_loop(double angle);
 
 /*	display	*/
 void	ft_pixel_put(t_img img, int x, int y, int color);
-t_img	ft_new_img(t_data *data, int width, int height, int x, int y);
-void	ft_put_image_to_window(t_data *data, t_img img, int color);
-void	ft_del_img(t_data *data);
 void	ft_draw_map(t_data *data);
+void	ft_draw_circle(t_data *data, int x0, int y0, int color);
+int		check_circle_collision(t_data *data, int x0, int y0, int radius);
 
 /*	hook	*/
 int		ft_key_press(int key, t_data *data);
 int		ft_key_release(int key, t_data *data);
 int		ft_update(t_data *data);
-void	ft_draw_cube(t_data *data, double angle);
-void	ft_draw_direction_line(t_data *data, int length, int color);
+void	ft_move_player(t_data *data, double angle);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
 void	ft_init_map_img(t_data *data, char *argv);
 void	ft_init_map_data(t_data *data, char *argv);
+void	ft_init_player(t_data *data);
 
 /*	free	*/
 void	ft_close_window(t_data *data);
@@ -123,7 +132,7 @@ double	ft_horizontal_ray(t_data *data, double ray_angle);
 double	ft_vertical_ray(t_data *data, double ray_angle);
 
 /*	wall	*/
-void	ft_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
-void	ft_draw_rectangle(t_data *data);
+void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
+void	ft_draw_wall(t_data *data);
 
 #endif

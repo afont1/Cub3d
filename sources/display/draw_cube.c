@@ -6,54 +6,68 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:32:42 by afont             #+#    #+#             */
-/*   Updated: 2024/05/30 11:27:25 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 15:22:41 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_draw_cube(t_data *data, double angle)
+int	ft_round_number(double number)
+{
+	if (number > 0)
+	{
+		if (number - (int)number < 0.5)
+			return ((int)number);
+		else
+			return ((int)number + 1);
+	}
+	else
+	{
+		if (number - (int)number > -0.5)
+			return ((int)number);
+		else
+			return ((int)number - 1);
+	}
+}
+
+void	ft_move_player(t_data *data, double angle)
 {
 	int	x_mv;
 	int	y_mv;
 
-	x_mv = 5 * cos(angle);
-	y_mv = 5 * sin(angle);
-	if (!is_wall(data, data->img.pos.x + x_mv, data->img.pos.y) &&
-    	!is_wall(data, data->img.pos.x + x_mv + CUBE_SIZE, data->img.pos.y) &&
-    	!is_wall(data, data->img.pos.x + x_mv, data->img.pos.y + CUBE_SIZE) &&
-    	!is_wall(data, data->img.pos.x + x_mv + CUBE_SIZE, data->img.pos.y + CUBE_SIZE))
-    	data->img.pos.x += x_mv;
-	if (!is_wall(data, data->img.pos.x, data->img.pos.y + y_mv) &&
-		!is_wall(data, data->img.pos.x + CUBE_SIZE, data->img.pos.y + y_mv) &&
-		!is_wall(data, data->img.pos.x, data->img.pos.y + y_mv + CUBE_SIZE) &&
-		!is_wall(data, data->img.pos.x + CUBE_SIZE, data->img.pos.y + y_mv + CUBE_SIZE))
-		data->img.pos.y += y_mv;
-	ft_put_image_to_window(data, data->img, CUBE_COLOR);
+	x_mv = ft_round_number(4 * cos(angle));
+	y_mv = ft_round_number(4 * sin(angle));
+	if (!check_circle_collision(data, data->player.pos.x + x_mv, data->player.pos.y, CIRCLE_RAD))
+		data->player.pos.x += x_mv;
+	if (!check_circle_collision(data, data->player.pos.x, data->player.pos.y + y_mv, CIRCLE_RAD))
+		data->player.pos.y += y_mv;
 }
 
-void	ft_draw_direction_line(t_data *data, int length, int color)
+int	check_circle_collision(t_data *data, int x0, int y0, int radius)
 {
-	int	start_x = data->img.pos.x + CUBE_SIZE / 2;
-	int start_y = data->img.pos.y + CUBE_SIZE / 2;
-	int end_x = start_x + length * cos(data->player_angle);
-	int end_y = start_y + length * sin(data->player_angle);
-	int err = (abs(end_x - start_x) > abs(end_y - start_y) ? abs(end_x - start_x) : -abs(end_y - start_y)) / 2;
-
-	ft_draw_map(data);
-	ft_put_image_to_window(data, data->img, CUBE_COLOR);
-	while (start_x != end_x || start_y != end_y)
+	double	angle;
+	
+	angle = 0;
+	while (angle < 2 * M_PI)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, start_x, start_y, color);
-		if (err > -abs(end_x - start_x))
-		{
-			err -= abs(end_y - start_y);
-			start_x += start_x < end_x ? 1 : -1;
-		}
-		if (err < abs(end_y - start_y))
-		{
-			err += abs(end_x - start_x);
-			start_y += start_y < end_y ? 1 : -1;
-		}
+		if (is_wall(data, x0 + radius * cos(angle), y0 + radius * sin(angle)))
+			return (1);
+		angle += 1;
+	}
+	return (0);
+}
+
+void	ft_draw_circle(t_data *data, int x0, int y0, int color)
+{
+	int	x;
+	int	y;
+	
+	y = -CIRCLE_RAD - 1;
+	while (++y <= CIRCLE_RAD)
+	{
+		x = -CIRCLE_RAD - 1;
+		while (++x <= CIRCLE_RAD)
+			if (x * x + y * y <= CIRCLE_RAD * CIRCLE_RAD)
+				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0 + x, y0 + y, color);
 	}
 }

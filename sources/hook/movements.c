@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/05/30 14:25:19 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 14:43:55 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,35 @@ int	ft_update(t_data *data)
 	if (frame == 800)
 	{
 		if (data->keys[UP])
-			ft_draw_cube(data, data->player_angle);
+		{
+			ft_move_player(data, data->player.angle);
+		}
 		if (data->keys[DOWN])
-			ft_draw_cube(data, data->player_angle + M_PI);
+		{
+			ft_move_player(data, data->player.angle + M_PI);
+		}
 		if (data->keys[LEFT])
 		{
-			if (data->player_angle < 0)
-				data->player_angle += 2 * M_PI;
-			data->player_angle -= ANGLE_STEP;
+			if (data->player.angle < 0)
+				data->player.angle += 2 * M_PI;
+			data->player.angle -= data->player.angle_step;
+			if (data->player.angle_step < 0.13)
+				data->player.angle_step += 0.005;
 		}
+		else if (!data->keys[RIGHT])
+			data->player.angle_step = ANGLE_STEP;
 		if (data->keys[RIGHT])
 		{
-			if (data->player_angle > 2 * M_PI)
-				data->player_angle -= 2 * M_PI;
-			data->player_angle += ANGLE_STEP;
+			if (data->player.angle > 2 * M_PI)
+				data->player.angle -= 2 * M_PI;
+			data->player.angle += data->player.angle_step;
+			if (data->player.angle_step < 0.13)
+				data->player.angle_step += 0.005;
 		}
+		else if (!data->keys[LEFT])
+			data->player.angle_step = ANGLE_STEP;
 		ft_draw_map(data);
-		ft_put_image_to_window(data, data->img, CUBE_COLOR);
+		ft_draw_circle(data, data->player.pos.x, data->player.pos.y, CUBE_COLOR);
 		ft_ray(data);
 		frame = 0;
 	}

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 11:16:42 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 13:16:58 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_destroy_img(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
 }
 
