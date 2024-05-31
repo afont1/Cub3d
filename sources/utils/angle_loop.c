@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   angle_loop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/05/31 09:05:31 by afont            ###   ########.fr       */
+/*   Created: 2024/05/30 10:24:27 by afont             #+#    #+#             */
+/*   Updated: 2024/05/30 10:26:16 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_init_data(t_data *data)
+double	ft_angle_loop(double angle)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 256)
-		data->keys[i] = 0;
-	data->player_angle = 0;
-	data->ray_data = malloc(sizeof(t_ray_data) * FOV);
-	ft_protect_malloc(data->ray_data);
+	if (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	if (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:32:42 by afont             #+#    #+#             */
-/*   Updated: 2024/05/23 08:43:16 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/30 11:27:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_draw_cube(t_data *data, double angle)
 
 	x_mv = 5 * cos(angle);
 	y_mv = 5 * sin(angle);
-	// ft_del_img(data);
-	ft_draw_map(data);
 	if (!is_wall(data, data->img.pos.x + x_mv, data->img.pos.y) &&
     	!is_wall(data, data->img.pos.x + x_mv + CUBE_SIZE, data->img.pos.y) &&
     	!is_wall(data, data->img.pos.x + x_mv, data->img.pos.y + CUBE_SIZE) &&

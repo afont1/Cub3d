@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 12:02:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/30 14:30:20 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,211 +14,174 @@
 
 void	ft_ray(t_data *data)
 {
-	int		nbr_ray; //
-	int		mx;
-	int		my;
-	int		dof;
-	int		is_vertical;
-	double	rx;
-	double	ry;
-	double	ray_angle; //
-	double	xo;
-	double	yo;
-	double	a_tan;
-	double 	n_tan;
+	int		nbr_ray;
+	double	ray_angle;
 	double	dist_h;
 	double	dist_v;
-	double	hx;
-	double	hy;
-	double	vx;
-	double	vy;
 	double	dist_t;
-	double	fish_eye;
 
-	hx = data->img.pos.x;
-	hy = data->img.pos.y;
-	vx = data->img.pos.x;
-	vy = data->img.pos.y;
 	ray_angle = data->player_angle - ONE_DR * FOV / 2;
-	if (ray_angle >= 2 * M_PI)
-		ray_angle -= 2 * M_PI;
-	if (ray_angle < 0)
-		ray_angle += 2 * M_PI;
+	ray_angle = ft_angle_loop(ray_angle);
 	nbr_ray = -1;
 	while (++nbr_ray < FOV)
 	{
-		dist_h = __DBL_MAX__;
-		dist_v = __DBL_MAX__;
-		dof = 0;
-		a_tan = -1/tan(ray_angle);
-		if (ray_angle > M_PI)
-		{
-			ry = (((int)data->img.pos.y / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) - 0.0001;
-			rx = (data->img.pos.y - ry) * a_tan + data->img.pos.x;
-			yo = -(WIN_HEIGHT / data->map.width);
-			xo = -yo * a_tan;
-		}
-		if (ray_angle < M_PI)
-		{
-			ry = (((int)data->img.pos.y / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) + (WIN_HEIGHT / data->map.width);
-			rx = (data->img.pos.y - ry) * a_tan + data->img.pos.x;
-			yo = (WIN_HEIGHT / data->map.width);
-			xo = -yo * a_tan;
-		}
-		if (ray_angle == 0 || ray_angle == M_PI)
-		{
-			rx = data->img.pos.x;
-			ry = data->img.pos.y;
-			dof = data->map.width;
-		}
-		while (dof < data->map.width)
-		{
-			my = (int)(ry) / (WIN_HEIGHT / data->map.width);
-			mx = (int)(rx) / (WIN_HEIGHT / data->map.width);
-			if (mx < data->map.width && my < data->map.width && mx >= 0 && my >= 0 && data->map.tab_map[my][mx] == '1')
-			{
-				dof = data->map.width;
-				hx = rx;
-				hy = ry;
-				dist_h = ft_dist(data->img.pos.x, data->img.pos.y, hx, hy);
-			}
-			else
-			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
-			}
-		}
-
-		//////////
-
-		dof = 0;
-		n_tan = -tan(ray_angle);
-		if (ray_angle > M_PI2 && ray_angle < M_PI3)
-		{
-			rx = (((int)data->img.pos.x / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) - 0.0001;
-			ry = (data->img.pos.x - rx) * n_tan + data->img.pos.y;
-			xo = -(WIN_HEIGHT / data->map.width);
-			yo = -xo * n_tan;
-		}
-		if (ray_angle < M_PI2 || ray_angle > M_PI3)
-		{
-			rx = (((int)data->img.pos.x / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) + (WIN_HEIGHT / data->map.width);
-			ry = (data->img.pos.x - rx) * n_tan + data->img.pos.y;
-			xo = (WIN_HEIGHT / data->map.width);
-			yo = -xo * n_tan;
-		}
-		if (ray_angle == 0 || ray_angle == M_PI)
-		{
-			rx = data->img.pos.x;
-			ry = data->img.pos.y;
-			dof = data->map.width;
-		}
-		while (dof < data->map.width)
-		{
-			mx = (int)(rx) / (WIN_HEIGHT / data->map.width);
-			my = (int)(ry) / (WIN_HEIGHT / data->map.width);
-			if (mx < data->map.width && my < data->map.width && mx >= 0 && my >= 0 && data->map.tab_map[my][mx] == '1')
-			{
-				dof = data->map.width;
-				vx = rx;
-				vy = ry;
-				dist_v = ft_dist(data->img.pos.x, data->img.pos.y, vx, vy);
-			}
-			else
-			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
-			}
-		}
+		dist_h = ft_horizontal_ray(data, ray_angle);
+		dist_v = ft_vertical_ray(data, ray_angle);
 		if (dist_v < dist_h)
 		{
-			rx = vx;
-			ry = vy;
-			dist_t = dist_v;
-			is_vertical = 0;
+			dist_t = fish_eye_correction(data, ray_angle, dist_v);
+			ft_wall(data, dist_t, nbr_ray, 0);
 		}
 		if (dist_h < dist_v)
 		{
-			rx = hx;
-			ry = hy;
-			dist_t = dist_h;
-			is_vertical = 1;
+			dist_t = fish_eye_correction(data, ray_angle, dist_h);
+			ft_wall(data, dist_t, nbr_ray, 1);
 		}
-		ft_draw_line(data->img.pos.x + CUBE_SIZE / 2, data->img.pos.y + CUBE_SIZE / 2, rx, ry, 0xFF0000, 1, data);
+		ft_draw_line(data, ray_angle, dist_t);
 		ray_angle += ONE_DR;
-		if (ray_angle >= 2 * M_PI)
-			ray_angle -= 2 * M_PI;
-		if (ray_angle < 0)
-			ray_angle += 2 * M_PI;
-		fish_eye = data->player_angle - ray_angle;
-		if (fish_eye < 0)
-			fish_eye += 2 * M_PI;
-		if (fish_eye > 2 * M_PI)
-			fish_eye -= 2 * M_PI;
-		dist_t *= cos(fish_eye);
-		ft_init_wall(data, dist_t, nbr_ray, is_vertical);
+		ray_angle = ft_angle_loop(ray_angle);
 	}
 }
 
-void ft_draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_data *data)
+void ft_draw_line(t_data *data, double ray_angle, double dist_t)
 {
-	int dx = abs(x1 - x0);
-	int sx = x0 < x1 ? 1 : -1;
-	int dy = -abs(y1 - y0);
-	int sy = y0 < y1 ? 1 : -1;
-	int err = dx + dy;
-	int e2;
+    int x0 = data->img.pos.x + CUBE_SIZE / 2;
+    int y0 = data->img.pos.y + CUBE_SIZE / 2;
+    int x1 = x0 + dist_t * cos(ray_angle) - CUBE_SIZE / 2;
+    int y1 = y0 + dist_t * sin(ray_angle) - CUBE_SIZE / 2;
+    int color = 0xFF0000;
+    int thickness = 1;
 
-	while (1)
-	{
-		for (int i = -thickness / 2; i <= thickness / 2; i++)
-		{
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0 + i, y0, color);
-		}
-		if (x0 == x1 && y0 == y1)
-			break;
-		e2 = 2 * err;
-		if (e2 >= dy)
-		{
-			err += dy;
-			x0 += sx;
-		}
-		if (e2 <= dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
-	}
+    int dx = abs(x1 - x0);
+    int sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0);
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy;
+    int e2;
+
+    while (1)
+    {
+        for (int i = -thickness / 2; i <= thickness / 2; i++)
+        {
+            mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0 + i, y0, color);
+        }
+        if (x0 == x1 && y0 == y1)
+            break;
+        e2 = 2 * err;
+        if (e2 >= dy)
+        {
+            err += dy;
+            x0 += sx;
+        }
+        if (e2 <= dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
 }
 
-void	ft_draw_circle(int x, int y, int r, int color, t_data *data)
+double	ft_horizontal_ray(t_data *data, double ray_angle)
 {
-	int i;
-	int j;
-	int d;
-
-	i = 0;
-	j = r;
-	d = 3 - 2 * r;
-	while (i <= j)
+	int	dof;
+	double	a_tan;
+	t_pos	map_coord;
+	t_coord	ray_coord;
+	t_coord	offset;
+	
+	dof = 0;
+	a_tan = -1/tan(ray_angle);
+	if (ray_angle > M_PI)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y - j, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x - i, y + j, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x - i, y - j, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + j, y + i, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + j, y - i, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x - j, y + i, color);
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x - j, y - i, color);
-		if (d < 0)
-			d += 4 * i + 6;
+		ray_coord.y = (((int)data->img.pos.y / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) - 0.0001;
+		ray_coord.x = (data->img.pos.y - ray_coord.y) * a_tan + data->img.pos.x;
+		offset.y = -(WIN_HEIGHT / data->map.width);
+		offset.x = -offset.y * a_tan;
+	}
+	if (ray_angle < M_PI)
+	{
+		ray_coord.y = (((int)data->img.pos.y / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) + (WIN_HEIGHT / data->map.width);
+		ray_coord.x = (data->img.pos.y - ray_coord.y) * a_tan + data->img.pos.x;
+		offset.y = (WIN_HEIGHT / data->map.width);
+		offset.x = -offset.y * a_tan;
+	}
+	if (ray_angle == 0 || ray_angle == M_PI)
+	{
+		ray_coord.x = data->img.pos.x;
+		ray_coord.y = data->img.pos.y;
+		dof = data->map.width;
+	}
+	while (dof < data->map.width)
+	{
+		map_coord.y = (int)(ray_coord.y) / (WIN_HEIGHT / data->map.width);
+		map_coord.x = (int)(ray_coord.x) / (WIN_HEIGHT / data->map.width);
+		if (map_coord.x < data->map.width && map_coord.y < data->map.width && map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map[map_coord.y][map_coord.x] == '1')
+			return (ft_dist(data->img.pos.x, data->img.pos.y, ray_coord.x, ray_coord.y));
 		else
 		{
-			d += 4 * (i - j) + 10;
-			j--;
+			ray_coord.x += offset.x;
+			ray_coord.y += offset.y;
+			dof += 1;
 		}
-		i++;
 	}
+	return (__DBL_MAX__);
+}
+
+double	ft_vertical_ray(t_data *data, double ray_angle)
+{
+	int	dof;
+	double	n_tan;
+	t_pos	map_coord;
+	t_coord	ray_coord;
+	t_coord	offset;
+
+	dof = 0;
+	n_tan = -tan(ray_angle);
+	if (ray_angle > M_PI2 && ray_angle < M_PI3)
+	{
+		ray_coord.x = (((int)data->img.pos.x / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) - 0.0001;
+		ray_coord.y = (data->img.pos.x - ray_coord.x) * n_tan + data->img.pos.y;
+		offset.x = -(WIN_HEIGHT / data->map.width);
+		offset.y = -offset.x * n_tan;
+	}
+	if (ray_angle < M_PI2 || ray_angle > M_PI3)
+	{
+		ray_coord.x = (((int)data->img.pos.x / (WIN_HEIGHT / data->map.width)) * (WIN_HEIGHT / data->map.width)) + (WIN_HEIGHT / data->map.width);
+		ray_coord.y = (data->img.pos.x - ray_coord.x) * n_tan + data->img.pos.y;
+		offset.x = (WIN_HEIGHT / data->map.width);
+		offset.y = -offset.x * n_tan;
+	}
+	if (ray_angle == 0 || ray_angle == M_PI)
+	{
+		ray_coord.x = data->img.pos.x;
+		ray_coord.y = data->img.pos.y;
+		dof = data->map.width;
+	}
+	while (dof < data->map.width)
+	{
+		map_coord.x = (int)(ray_coord.x) / (WIN_HEIGHT / data->map.width);
+		map_coord.y = (int)(ray_coord.y) / (WIN_HEIGHT / data->map.width);
+		if (map_coord.x < data->map.width && map_coord.y < data->map.width && map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map[map_coord.y][map_coord.x] == '1')
+			return (ft_dist(data->img.pos.x, data->img.pos.y, ray_coord.x, ray_coord.y));
+		else
+		{
+			ray_coord.x += offset.x;
+			ray_coord.y += offset.y;
+			dof += 1;
+		}
+	}
+	return (__DBL_MAX__);
+}
+
+double	fish_eye_correction(t_data *data, double ray_angle, double dist_t)
+{
+	double	fish_eye;
+	
+	fish_eye = data->player_angle - ray_angle;
+	if (fish_eye < 0)
+		fish_eye += 2 * M_PI;
+	if (fish_eye > 2 * M_PI)
+		fish_eye -= 2 * M_PI;
+	dist_t *= cos(fish_eye);
+	return (dist_t);
 }

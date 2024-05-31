@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 11:58:13 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 09:05:24 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "define.h"
@@ -30,11 +32,18 @@ typedef struct s_img		t_img;
 typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
 typedef struct s_ray_data	t_ray_data;
+typedef struct s_coord		t_coord;
 
 struct	s_pos
 {
 	int		x;
 	int		y;
+};
+
+struct	s_coord
+{
+	double	x;
+	double	y;
 };
 
 struct	s_img
@@ -81,6 +90,7 @@ void	ft_protect_malloc(void *ptr);
 int		is_wall(t_data *data, double x, double y);
 double	ft_dist(double ax, double ay, double bx, double by);
 int		ft_get_map_height(char *argv);
+double	ft_angle_loop(double angle);
 
 /*	display	*/
 void	ft_pixel_put(t_img img, int x, int y, int color);
@@ -107,11 +117,13 @@ void	ft_destroy_img(t_data *data);
 
 /*	ray	*/
 void	ft_ray(t_data *data);
-void	ft_draw_line(int x0, int y0, int x1, int y1, int color, int thickness, t_data *data);
-void	ft_draw_circle(int x, int y, int r, int color, t_data *data);
+void	ft_draw_line(t_data *data, double ray_angle, double dist_t);
+double	fish_eye_correction(t_data *data, double ray_angle, double dist_t);
+double	ft_horizontal_ray(t_data *data, double ray_angle);
+double	ft_vertical_ray(t_data *data, double ray_angle);
 
 /*	wall	*/
-void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
+void	ft_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
 void	ft_draw_rectangle(t_data *data);
 
 #endif

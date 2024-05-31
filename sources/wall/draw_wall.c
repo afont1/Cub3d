@@ -6,23 +6,21 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 12:02:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/30 10:07:05 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_init_wall(t_data *data, double dist_t, int nbr_ray, int is_vertical)
+void	ft_wall(t_data *data, double dist_t, int nbr_ray, int is_vertical)
 {
 	float			line_height;
-	// static float	list_height[FOV];
 
 	line_height = (WIN_HEIGHT * (WIN_HEIGHT / data->map.width)) / dist_t;
 	if (line_height > WIN_HEIGHT)
 		line_height = WIN_HEIGHT;
 	data->ray_data[nbr_ray].line_height = line_height;
 	data->ray_data[nbr_ray].is_vertical = is_vertical;
-	// list_height[nbr_ray] = line_height;
 	if (nbr_ray == FOV - 1)
 		ft_draw_rectangle(data);
 }

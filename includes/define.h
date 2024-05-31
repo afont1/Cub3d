@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/05/29 12:02:49 by afont            ###   ########.fr       */
+/*   Updated: 2024/05/31 09:05:26 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WIN_HEIGHT			512
 # define CUBE_SIZE			10
 # define MAP_SIZE			512
-# define ANGLE_STEP			0.09
+# define ANGLE_STEP			0.05
 # define PRECISION			4.26666666666666666666666666667
 # define FOV				(60*PRECISION)
 
