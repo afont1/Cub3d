@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:32:42 by afont             #+#    #+#             */
-/*   Updated: 2024/05/31 15:22:41 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/03 09:03:32 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_move_player(t_data *data, double angle)
 int	check_circle_collision(t_data *data, int x0, int y0, int radius)
 {
 	double	angle;
-	
+
 	angle = 0;
 	while (angle < 2 * M_PI)
 	{
@@ -61,7 +61,7 @@ void	ft_draw_circle(t_data *data, int x0, int y0, int color)
 {
 	int	x;
 	int	y;
-	
+
 	y = -CIRCLE_RAD - 1;
 	while (++y <= CIRCLE_RAD)
 	{
