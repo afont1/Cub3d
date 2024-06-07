@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 08:57:33 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:03:47 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@
 # define ANGLE_STEP			0.03
 # define PRECISION			(4.26666666666666666666666666667*3)
 # define FOV				(60*PRECISION)
-# define WW					(WIN_WIDTH / FOV)
+# define WW					(WIN_WIDTH/FOV)
 # define SPEED				8
-# define FPS				240
+# define FPS				60
+# define MAP_RANGE			16
 
 /* ************************************************************************** */
 /*	-colors                                                                   */
 /* ************************************************************************** */
 # define CUBE_COLOR			0x006400
-# define MAP_WALL_COLOR		0x808080
-# define MAP_FLOOR_COLOR	0x000000
+# define MAP_WALL_COLOR		0x2e2e2e
+# define MAP_WALL_COLOR2	0x212121	
+# define MAP_FLOOR_COLOR	0x474747
 
 /* ************************************************************************** */
 /*	-math                                                                     */

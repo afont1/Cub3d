@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 09:25:09 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:10:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_ray(t_data *data)
 		ray_angle += ONE_DR;
 		ray_angle = ft_angle_loop(ray_angle);
 	}
-	ft_draw_wall(data);
 }
 
 double	ft_horizontal_ray(t_data *data, double ray_angle)
@@ -99,7 +98,7 @@ double	fish_eye(t_data *data, double ray_angle, double dist_t)
 	double	fish_eye;
 
 	fish_eye = data->player.angle - ray_angle;
-	ft_angle_loop(fish_eye);
+	fish_eye = ft_angle_loop(fish_eye);
 	dist_t *= cos(fish_eye);
 	return (dist_t);
 }

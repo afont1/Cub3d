@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 09:12:27 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:23:30 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ struct	s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	int			width;
-	int			height;
 	t_pos		pos;
 };
 
@@ -116,7 +114,7 @@ void	ft_move_player(t_data *data, double angle);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
-void	ft_init_map_img(t_data *data, char *argv);
+void	ft_init_map_img(t_data *data);
 void	ft_init_map_data(t_data *data, char *argv);
 void	ft_init_player(t_data *data);
 

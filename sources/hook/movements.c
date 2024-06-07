@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 09:25:06 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:42:52 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ int	ft_update(t_data *data)
 			ft_turn_player(data, 0);
 		else if (!data->keys[LEFT])
 			data->player.angle_step = ANGLE_STEP;
-		// ft_draw_map(data);
 		// ft_draw_circle(data, data->player.pos.x, data->player.pos.y, CUBE_COLOR);
 		ft_ray(data);
+		ft_draw_wall(data);
+		mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
+		ft_init_map_img(data);
+		ft_draw_map(data);
 		gettimeofday(&end, NULL);
 		elapsed = (end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec;
 		if (elapsed < 1000000 / FPS)

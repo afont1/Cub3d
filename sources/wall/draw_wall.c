@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 09:49:55 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 15:41:21 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	ft_put_wall(t_data *data, t_img *wall_img, int k, double offset)
 		while (++j < WW)
 		{
 			if (data->ray_data[k].is_vertical == 1)
-				ft_pixel_put(*wall_img, (k * WW + j), (i + offset), 0x2e2e2e);
+				ft_pixel_put(*wall_img, (k * WW + j), (i + offset), MAP_WALL_COLOR);
 			else
-				ft_pixel_put(*wall_img, (k * WW + j), (i + offset), 0x212121);
+				ft_pixel_put(*wall_img, (k * WW + j), (i + offset), MAP_WALL_COLOR2);
 		}
 	}
 	while (i < WIN_HEIGHT)
 	{
 		j = -1;
 		while (++j < WW && (i + offset) < WIN_HEIGHT)
-			ft_pixel_put(*wall_img, (k * WW + j), (i + offset), 0x474747);
+			ft_pixel_put(*wall_img, (k * WW + j), (i + offset), MAP_FLOOR_COLOR);
 		i++;
 	}
 }
