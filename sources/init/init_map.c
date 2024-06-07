@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:35:13 by afont             #+#    #+#             */
-/*   Updated: 2024/06/04 10:35:55 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 09:17:42 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	ft_init_map_addr(t_data *data, t_img map_img, int i, int j)
 	int	x;
 	int	y;
 
-	y = i * (MAP_SIZE / data->map.width) - 1;
-	while (++y < (i + 1) * (MAP_SIZE / data->map.width))
+	y = i * (data->map.width) - 1;
+	while (++y < (i + 1) * (data->map.width))
 	{
-		x = j * (MAP_SIZE / data->map.width) - 1;
-		while (++x < (j + 1) * (MAP_SIZE / data->map.width))
+		x = j * (data->map.width) - 1;
+		while (++x < (j + 1) * (data->map.width))
 		{
-			if (x % (MAP_SIZE / data->map.width) == 0 || y % (MAP_SIZE / data->map.width) == 0)
+			if (x % (data->map.width) == 0 || y % (data->map.width) == 0)
 				((int *)map_img.addr)[y * map_img.line_length / 4 + x] = MAP_WALL_COLOR;
 			else if (data->map.tab_map[i][j] == '1')
 				((int *)map_img.addr)[y * map_img.line_length / 4 + x] = MAP_WALL_COLOR;

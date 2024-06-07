@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/04 09:51:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 09:12:27 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	ft_destroy_img(t_data *data);
 /*	ray	*/
 void	ft_ray(t_data *data);
 void	ft_draw_line(t_data *data, double ray_angle, double dist_t);
-double	fish_eye_correction(t_data *data, double ray_angle, double dist_t);
+double	fish_eye(t_data *data, double ray_angle, double dist_t);
 double	ft_horizontal_ray(t_data *data, double ray_angle);
 double	ft_vertical_ray(t_data *data, double ray_angle);
 int		ft_horizontal_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);

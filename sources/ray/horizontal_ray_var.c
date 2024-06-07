@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 08:55:57 by afont             #+#    #+#             */
-/*   Updated: 2024/06/04 09:51:24 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 09:18:05 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double ray_angle)
 	int		ratio;
 
 	a_tan = -1 / tan(ray_angle);
-	ratio = WIN_HEIGHT / data->map.width;
+	ratio = data->map.width;
 	ray_coord->y = (((int)data->player.pos.y / ratio) * ratio) - 0.0001;
 	ray_coord->x = (data->player.pos.y - ray_coord->y) * a_tan + \
 	data->player.pos.x;
@@ -34,7 +34,7 @@ double ray_angle)
 	int		ratio;
 
 	a_tan = -1 / tan(ray_angle);
-	ratio = WIN_HEIGHT / data->map.width;
+	ratio = data->map.width;
 	ray_coord->y = (((int)data->player.pos.y / ratio) * ratio) + ratio;
 	ray_coord->x = (data->player.pos.y - ray_coord->y) * a_tan + \
 	data->player.pos.x;

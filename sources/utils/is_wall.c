@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:05:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/04 10:05:53 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 09:18:27 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	is_wall(t_data *data, double x, double y)
 	int	map_x;
 	int	map_y;
 
-	map_x = x / (WIN_HEIGHT / data->map.width);
-	map_y = y / (WIN_HEIGHT / data->map.width);
+	map_x = x / (data->map.width);
+	map_y = y / (data->map.width);
 	if (map_x < 0 || map_y < 0 || map_x >= data->map.width || \
 	map_y >= data->map.width)
 		return (1);

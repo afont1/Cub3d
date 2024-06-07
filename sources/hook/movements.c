@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/06/04 10:35:08 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/07 09:25:06 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,20 @@ void	ft_turn_player(t_data *data, int flag)
 	}
 }
 
+#include <sys/time.h>
 int	ft_update(t_data *data)
 {
-	static int	frame;
+	// static int	frame;
 
-	frame++;
-	if (frame == 800)
-	{
+	// frame++;
+	// if (frame == 400)
+	// {
+		struct timeval	start, end;
+		long			elapsed;
+		static int		frame;
+		
+		frame++;
+		gettimeofday(&start, NULL);
 		if (data->keys[UP])
 			ft_move_player(data, data->player.angle);
 		if (data->keys[DOWN])
@@ -67,11 +74,14 @@ int	ft_update(t_data *data)
 			ft_turn_player(data, 0);
 		else if (!data->keys[LEFT])
 			data->player.angle_step = ANGLE_STEP;
-		ft_draw_map(data);
-		ft_draw_circle(data, data->player.pos.x, \
-		data->player.pos.y, CUBE_COLOR);
+		// ft_draw_map(data);
+		// ft_draw_circle(data, data->player.pos.x, data->player.pos.y, CUBE_COLOR);
 		ft_ray(data);
-		frame = 0;
-	}
+		gettimeofday(&end, NULL);
+		elapsed = (end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec;
+		if (elapsed < 1000000 / FPS)
+			usleep(1000000 / FPS - elapsed);
+		// frame = 0;
+	// }
 	return (0);
 }
