@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 11:14:50 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/10 10:10:08 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_cub3d(t_data *data, char *argv)
 
 	ft_init_player(data);
 	ft_init_map_data(data, argv);
-	ft_init_map_img(data);
 	ft_draw_map(data);
 
 	mlx_hook(data->win_ptr, 2, (1L << 0), ft_key_press, data);

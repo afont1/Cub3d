@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 14:30:45 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/10 12:43:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_init_data(t_data *data)
 
 void	ft_init_player(t_data *data)
 {
-	data->player.pos.x = 500;
-	data->player.pos.y = 500;
+	data->player.pos.x = 100;
+	data->player.pos.y = 100;
 	data->player.radius = CIRCLE_RAD;
 	data->player.color = 0x00FF00;
 	data->player.angle = M_PI;

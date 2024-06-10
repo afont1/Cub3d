@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   angle_loop.c                                       :+:      :+:    :+:   */
+/*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 10:24:27 by afont             #+#    #+#             */
-/*   Updated: 2024/05/30 10:26:16 by afont            ###   ########.fr       */
+/*   Created: 2024/05/21 09:26:56 by afont             #+#    #+#             */
+/*   Updated: 2024/06/10 09:32:08 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-double	ft_angle_loop(double angle)
+void	ft_pixel_put(t_img img, int x, int y, int color)
 {
-	if (angle >= 2 * M_PI)
-		angle -= 2 * M_PI;
-	if (angle < 0)
-		angle += 2 * M_PI;
-	return (angle);
+	int	offset;
+
+	offset = (img.line_length * y) + (x * (img.bits_per_pixel / 8));
+	*((unsigned int *)(offset + img.addr)) = color;
 }

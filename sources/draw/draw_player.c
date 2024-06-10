@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_cube.c                                        :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:32:42 by afont             #+#    #+#             */
-/*   Updated: 2024/06/05 10:41:21 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/10 12:43:14 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ int	ft_round_number(double number)
 	}
 }
 
-void	ft_move_player(t_data *data, double angle)
-{
-	int	x_mv;
-	int	y_mv;
-
-	x_mv = ft_round_number(SPEED * cos(angle));
-	y_mv = ft_round_number(SPEED * sin(angle));
-	if (!check_circle_collision(data, data->player.pos.x + x_mv, data->player.pos.y, CIRCLE_RAD))
-		data->player.pos.x += x_mv;
-	if (!check_circle_collision(data, data->player.pos.x, data->player.pos.y + y_mv, CIRCLE_RAD))
-		data->player.pos.y += y_mv;
-}
-
 int	check_circle_collision(t_data *data, int x0, int y0, int radius)
 {
 	double	angle;
@@ -55,6 +42,19 @@ int	check_circle_collision(t_data *data, int x0, int y0, int radius)
 		angle += 1;
 	}
 	return (0);
+}
+
+void	ft_move_player(t_data *data, double angle)
+{
+	int	x_mv;
+	int	y_mv;
+
+	x_mv = ft_round_number(SPEED * cos(angle));
+	y_mv = ft_round_number(SPEED * sin(angle));
+	if (!check_circle_collision(data, data->player.pos.x + x_mv, data->player.pos.y, CIRCLE_RAD))
+		data->player.pos.x += x_mv;
+	if (!check_circle_collision(data, data->player.pos.x, data->player.pos.y + y_mv, CIRCLE_RAD))
+		data->player.pos.y += y_mv;
 }
 
 void	ft_draw_circle(t_data *data, int x0, int y0, int color)

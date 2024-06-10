@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   img_fusion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/03 09:03:56 by afont            ###   ########.fr       */
+/*   Created: 2024/06/10 09:35:58 by afont             #+#    #+#             */
+/*   Updated: 2024/06/10 09:47:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_draw_map(t_data *data)
+int	ft_get_color(t_img *img, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.img.img_ptr, 0, 0);
+	return (*((unsigned int *)(img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8)))));
+}
+
+void	ft_fusion_img(t_img *dst, t_img *src, int x, int y)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < (MAP_RANGE + 1) * 20)
+	{
+		j = -1;
+		while (++j < (MAP_RANGE + 1) * 20)
+		{
+			ft_pixel_put(*dst, x + i, y + j, ft_get_color(src, i, j));
+		}
+	}
 }

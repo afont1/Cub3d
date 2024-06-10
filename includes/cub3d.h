@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 15:23:30 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/10 12:35:54 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,11 @@ int		is_wall(t_data *data, double x, double y);
 double	ft_dist(double ax, double ay, double bx, double by);
 int		ft_get_map_height(char *argv);
 double	ft_angle_loop(double angle);
+void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
+double	ft_dist_ang(double player_angle, int *d, int flag);
 
 /*	display	*/
-void	ft_pixel_put(t_img img, int x, int y, int color);
-void	ft_draw_map(t_data *data);
-void	ft_draw_circle(t_data *data, int x0, int y0, int color);
-int		check_circle_collision(t_data *data, int x0, int y0, int radius);
+void	ft_display_all(t_data *data);
 
 /*	hook	*/
 int		ft_key_press(int key, t_data *data);
@@ -114,7 +113,6 @@ void	ft_move_player(t_data *data, double angle);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
-void	ft_init_map_img(t_data *data);
 void	ft_init_map_data(t_data *data, char *argv);
 void	ft_init_player(t_data *data);
 
@@ -130,8 +128,13 @@ double	ft_horizontal_ray(t_data *data, double ray_angle);
 double	ft_vertical_ray(t_data *data, double ray_angle);
 int		ft_horizontal_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
 int		ft_vertical_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
-/*	wall	*/
+
+/*	draw	*/
+void	ft_draw_map(t_data *data);
+void	ft_pixel_put(t_img img, int x, int y, int color);
 void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
-void	ft_draw_wall(t_data *data);
+void	ft_draw_circle(t_data *data, int x0, int y0, int color);
+void	ft_put_wall(t_data *data, t_img *wall_img, int k, double offset);
+void	ft_draw_all(t_data *data);
 
 #endif
