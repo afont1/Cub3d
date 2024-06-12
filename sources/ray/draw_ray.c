@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 15:10:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/11 09:38:00 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,9 @@ void	ft_ray(t_data *data)
 		dist_h = ft_horizontal_ray(data, ray_angle);
 		dist_v = ft_vertical_ray(data, ray_angle);
 		if (dist_v < dist_h)
-		{
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_v), nbr_ray, 0);
-			// ft_draw_line(data, ray_angle, fish_eye(data, ray_angle, dist_v));
-		}
 		if (dist_h < dist_v)
-		{
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_h), nbr_ray, 1);
-			// ft_draw_line(data, ray_angle, fish_eye(data, ray_angle, dist_h));
-		}
 		ray_angle += ONE_DR;
 		ray_angle = ft_angle_loop(ray_angle);
 	}
@@ -101,37 +95,4 @@ double	fish_eye(t_data *data, double ray_angle, double dist_t)
 	fish_eye = ft_angle_loop(fish_eye);
 	dist_t *= cos(fish_eye);
 	return (dist_t);
-}
-
-void	ft_draw_line(t_data *data, double ray_angle, double dist_t)
-{
-	int	x0 = data->player.pos.x;
-	int	y0 = data->player.pos.y;
-	int	x1 = x0 + dist_t * cos(ray_angle);
-	int	y1 = y0 + dist_t * sin(ray_angle);
-
-	int dx = abs(x1 - x0);
-	int sx = x0 < x1 ? 1 : -1;
-	int dy = -abs(y1 - y0);
-	int sy = y0 < y1 ? 1 : -1;
-	int err = dx + dy;
-	int e2;
-
-	while (1)
-	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, 0xFF0000);
-		if (x0 == x1 && y0 == y1)
-			break;
-		e2 = 2 * err;
-		if (e2 >= dy)
-		{
-			err += dy;
-			x0 += sx;
-		}
-		if (e2 <= dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
-	}
 }

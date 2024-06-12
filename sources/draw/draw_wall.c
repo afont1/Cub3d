@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/06/10 09:56:44 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/11 09:04:59 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_init_wall(t_data *data, double dist_t, int nbr_ray, int is_vertical)
 	data->ray_data[nbr_ray].is_vertical = is_vertical;
 }
 
-void	ft_put_wall(t_data *data, t_img *wall_img, int k, double offset)
+void	ft_draw_wall(t_data *data, t_img *wall_img, int k, double offset)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/10 12:44:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/11 09:04:10 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	ft_draw_line_fov(t_img img, int x0, int y0, int x1, int y1)
 
 void	ft_draw_fov(t_data *data, t_img img)
 {
-	int	start;
-	int	distance1;
-	int	distance2;
+	int		start;
+	int		distance1;
+	int		distance2;
 	double	angle1;
 	double	angle2;
 
@@ -86,7 +86,7 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 	else if (data->map.tab_map[j][i] == '0')
 		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
 	if (i == data->player.pos.x / data->map.width && j == data->player.pos.y / data->map.width)
-		ft_draw_square(map_img, x, y, 0x00FF00);
+		ft_draw_square(map_img, x, y, CUBE_COLOR);
 }
 
 void	ft_draw_border(t_img img, int color)
@@ -101,7 +101,7 @@ void	ft_draw_border(t_img img, int color)
 		while (++i < (MAP_RANGE + 1) * 20)
 		{
 			ft_pixel_put(img, i, j, color);
-            ft_pixel_put(img, i, (MAP_RANGE + 1) * 20 - 1 - j, color);
+			ft_pixel_put(img, i, (MAP_RANGE + 1) * 20 - 1 - j, color);
 		}
 	}
 	j = -1;
@@ -111,7 +111,7 @@ void	ft_draw_border(t_img img, int color)
 		while (++i < BORDER_WIDTH)
 		{
 			ft_pixel_put(img, i, j, color);
-            ft_pixel_put(img, (MAP_RANGE + 1) * 20 - 1 - i, j, color);
+			ft_pixel_put(img, (MAP_RANGE + 1) * 20 - 1 - i, j, color);
 		}
 	}
 }
