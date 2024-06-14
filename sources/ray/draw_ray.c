@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/11 09:38:00 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/13 10:42:19 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	ft_ray(t_data *data)
 		dist_h = ft_horizontal_ray(data, ray_angle);
 		dist_v = ft_vertical_ray(data, ray_angle);
 		if (dist_v < dist_h)
+		{
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_v), nbr_ray, 0);
+		}
 		if (dist_h < dist_v)
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_h), nbr_ray, 1);
 		ray_angle += ONE_DR;
@@ -49,7 +51,7 @@ double	ft_horizontal_ray(t_data *data, double ray_angle)
 		{
 			map_coord.y = (int)(ray_coord.y) / data->map.width;
 			map_coord.x = (int)(ray_coord.x) / data->map.width;
-			if (map_coord.x < data->map.width && map_coord.y < data->map.width \
+			if (map_coord.x < data->map.width && map_coord.y < data->map.height \
 			&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 			[map_coord.y][map_coord.x] == '1')
 				return (ft_dist(data->player.pos.x, data->player.pos.y, \
@@ -75,7 +77,7 @@ double	ft_vertical_ray(t_data *data, double ray_angle)
 		{
 			map_coord.x = (int)(ray_coord.x) / data->map.width;
 			map_coord.y = (int)(ray_coord.y) / data->map.width;
-			if (map_coord.x < data->map.width && map_coord.y < data->map.width \
+			if (map_coord.x < data->map.width && map_coord.y < data->map.height \
 			&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 			[map_coord.y][map_coord.x] == '1')
 				return (ft_dist(data->player.pos.x, data->player.pos.y, \

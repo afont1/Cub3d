@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/11 09:38:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/13 11:00:03 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ struct	s_map
 {
 	char	**tab_map;
 	int		width;
+	int		height;
 	t_img	img;
 };
 
@@ -98,6 +99,7 @@ void	ft_protect_malloc(void *ptr);
 int		is_wall(t_data *data, double x, double y);
 double	ft_dist(double ax, double ay, double bx, double by);
 int		ft_get_map_height(char *argv);
+int		ft_get_map_width(char *argv);
 double	ft_angle_loop(double angle);
 void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
 double	ft_dist_ang(double player_angle, int *d, int flag);

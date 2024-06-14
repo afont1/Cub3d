@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/06/12 09:22:50 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/12 10:16:44 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_update(t_data *data)
 			ft_display_all(data);
 		// }
 		
-		ft_frame_counter();
+		// ft_frame_counter();
 		// gettimeofday(&end, NULL);
 		// elapsed = (end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec;
 		// if (elapsed < 1000000 / FPS)

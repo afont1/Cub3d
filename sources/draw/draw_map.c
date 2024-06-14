@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/11 09:04:10 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/13 11:00:41 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	ft_draw_fov(t_data *data, t_img img)
 
 void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	x = (i - (data->player.pos.x / data->map.width) + MAP_RANGE / 2) * 20;
 	y = (j - (data->player.pos.y / data->map.width) + MAP_RANGE / 2) * 20;
@@ -85,6 +85,8 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 		ft_draw_square(map_img, x, y, MAP_WALL_COLOR);
 	else if (data->map.tab_map[j][i] == '0')
 		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
+	else if (data->map.tab_map[j][i] == ' ')
+		ft_draw_square(map_img, x, y, 0x000000);
 	if (i == data->player.pos.x / data->map.width && j == data->player.pos.y / data->map.width)
 		ft_draw_square(map_img, x, y, CUBE_COLOR);
 }
@@ -131,7 +133,7 @@ void	ft_draw_map(t_data *data)
 		j = (data->player.pos.y / data->map.width) - MAP_RANGE / 2;
 		while (j < (data->player.pos.y / data->map.width) + (MAP_RANGE / 2) + 1)
 		{
-			if (i >= 0 && i < data->map.width && j >= 0 && j < data->map.width)
+			if (i >= 0 && i < data->map.width && j >= 0 && j < data->map.height)
 				ft_draw_map_square(data, map_img, i, j);
 			j++;
 		}

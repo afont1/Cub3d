@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:14:08 by afont             #+#    #+#             */
-/*   Updated: 2024/05/28 15:46:21 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/12 10:01:45 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 
+	
 	if (ac == 2)
 	{
 		data = malloc(sizeof(t_data));
@@ -27,3 +28,5 @@ int	main(int ac, char **av)
 		printf("Error\n");
 	return (0);
 }
+
+//to do : checker si c'set pas un dossier

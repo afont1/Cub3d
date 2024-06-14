@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/12 09:23:08 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/12 10:06:26 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define WW					(WIN_WIDTH/FOV)
 # define SPEED				8
 # define FPS				60
-# define MAP_RANGE			16
+# define MAP_RANGE			32
 # define BORDER_WIDTH		5
 
 /* ************************************************************************** */

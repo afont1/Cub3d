@@ -15,7 +15,7 @@ all: $(NAME)
 $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@tput civis
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -g -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
 	i=1; \
 	while [ $$i -le $$count ]; do \

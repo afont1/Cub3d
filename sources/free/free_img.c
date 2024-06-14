@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/06/03 09:04:06 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/13 12:42:56 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_close_window(t_data *data)
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	i = -1;
-	while (data->map.tab_map[++i])
+	while (++i < data->map.height)
 		free(data->map.tab_map[i]);
 	free(data->map.tab_map);
 	free(data);
