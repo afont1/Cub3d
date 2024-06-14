@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/13 11:00:03 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 11:44:29 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,7 @@ void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
 void	ft_draw_circle(t_data *data, int x0, int y0, int color);
 void	ft_draw_wall(t_data *data, t_img *wall_img, int k, double offset);
 void	ft_draw_all(t_data *data);
+
+void	ft_draw_line(t_data *data, double ray_angle, double dist_t);
 
 #endif

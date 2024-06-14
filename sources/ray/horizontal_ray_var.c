@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 08:55:57 by afont             #+#    #+#             */
-/*   Updated: 2024/06/07 09:18:05 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 14:40:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ double ray_angle)
 {
 	if (ray_angle > M_PI)
 		ft_horizontal_var2(data, ray_coord, offset, ray_angle);
-	if (ray_angle < M_PI)
+	else if (ray_angle < M_PI)
 		ft_horizontal_var3(data, ray_coord, offset, ray_angle);
-	if (ray_angle == 0 || ray_angle == M_PI)
+	else if (ray_angle == 0 || ray_angle == M_PI)
 	{
 		ray_coord->x = data->player.pos.x;
 		ray_coord->y = data->player.pos.y;

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 09:35:58 by afont             #+#    #+#             */
-/*   Updated: 2024/06/10 09:47:15 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 14:27:56 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	ft_fusion_img(t_img *dst, t_img *src, int x, int y)
 	int	j;
 
 	i = -1;
-	while (++i < (MAP_RANGE + 1) * 20)
+	while (++i < MAP_SIZE)
 	{
 		j = -1;
-		while (++j < (MAP_RANGE + 1) * 20)
+		while (++j < MAP_SIZE)
 		{
 			ft_pixel_put(*dst, x + i, y + j, ft_get_color(src, i, j));
 		}

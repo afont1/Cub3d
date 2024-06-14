@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/12 10:06:26 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 14:28:43 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
 # define CIRCLE_RAD			5
-# define MAP_SIZE			1024
 # define ANGLE_STEP			0.03
-# define PRECISION			(4.26666666666666666666666666667*3)
-# define FOV				(60*PRECISION)
+# define FOV				60
 # define WW					(WIN_WIDTH/FOV)
-# define SPEED				8
+# define SPEED				32
 # define FPS				60
-# define MAP_RANGE			32
+# define MAP_RANGE			16
 # define BORDER_WIDTH		5
+# define MAP_SQUARE_SIZE	20
+# define MAP_SIZE			((MAP_RANGE + 1) * MAP_SQUARE_SIZE)
 
 /* ************************************************************************** */
 /*	-colors                                                                   */
@@ -51,6 +51,6 @@
 # define M_PI				3.14159265358979323846
 # define M_PI2				M_PI / 2
 # define M_PI3				3 * M_PI / 2
-# define ONE_DR				(0.0174533/PRECISION)
+# define ONE_DR				(0.01745329252)
 
 #endif

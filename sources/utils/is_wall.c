@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:05:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/13 09:13:26 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 10:54:52 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_wall(t_data *data, double x, double y)
 	map_x = x / (data->map.width);
 	map_y = y / (data->map.width);
 	if (map_x < 0 || map_y < 0 || map_x >= data->map.width || \
-	map_y >= data->map.width)
+	map_y >= data->map.height)
 		return (1);
 	return (data->map.tab_map[map_y][map_x] == '1');
 }

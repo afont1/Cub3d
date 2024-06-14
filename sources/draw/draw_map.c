@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/13 11:00:41 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/14 14:31:42 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,12 @@ void	ft_draw_square(t_img img, int x, int y, int color)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < 20)
+	i = -1;
+	while (++i < MAP_SQUARE_SIZE)
 	{
-		j = 0;
-		while (j < 20)
-		{
-			*(unsigned int *)(img.addr + ((y + i) * img.line_length + (x + j) * (img.bits_per_pixel / 8))) = color;
-			j++;
-		}
-		i++;
+		j = -1;
+		while (++j < MAP_SQUARE_SIZE)
+			ft_pixel_put(img, x + j, y + i, color);
 	}
 }
 
@@ -41,7 +37,7 @@ void	ft_draw_line_fov(t_img img, int x0, int y0, int x1, int y1)
 
 	while (1)
 	{
-		*(unsigned int *)(img.addr + (y0 * img.line_length + x0 * (img.bits_per_pixel / 8))) = 0xFFFFFF;
+		ft_pixel_put(img, x0, y0, 0xFFFFFF);
 		if (x0 == x1 && y0 == y1)
 			break;
 		e2 = 2 * err;
@@ -69,7 +65,7 @@ void	ft_draw_fov(t_data *data, t_img img)
 	distance1 = 0;
 	angle1 = ft_dist_ang(data->player.angle, &distance1, 0);
 	angle2 = ft_dist_ang(data->player.angle, &distance2, 1);
-	start = (MAP_RANGE / 2) * 20 + 10;
+	start = (MAP_RANGE / 2) * MAP_SQUARE_SIZE + 10;
 	ft_draw_line_fov(img, start, start, start + cos(angle1) * distance1, start + sin(angle1) * distance1);
 	ft_draw_line_fov(img, start, start, start + cos(angle2) * distance2, start + sin(angle2) * distance2);
 }
@@ -79,8 +75,8 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 	int			x;
 	int			y;
 
-	x = (i - (data->player.pos.x / data->map.width) + MAP_RANGE / 2) * 20;
-	y = (j - (data->player.pos.y / data->map.width) + MAP_RANGE / 2) * 20;
+	x = (i - (data->player.pos.x / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
+	y = (j - (data->player.pos.y / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
 	if (data->map.tab_map[j][i] == '1')
 		ft_draw_square(map_img, x, y, MAP_WALL_COLOR);
 	else if (data->map.tab_map[j][i] == '0')
@@ -100,20 +96,20 @@ void	ft_draw_border(t_img img, int color)
 	while (++j < BORDER_WIDTH)
 	{
 		i = -1;
-		while (++i < (MAP_RANGE + 1) * 20)
+		while (++i < MAP_SIZE)
 		{
 			ft_pixel_put(img, i, j, color);
-			ft_pixel_put(img, i, (MAP_RANGE + 1) * 20 - 1 - j, color);
+			ft_pixel_put(img, i, MAP_SIZE - 1 - j, color);
 		}
 	}
 	j = -1;
-	while (++j < (MAP_RANGE + 1) * 20)
+	while (++j < MAP_SIZE)
 	{
 		i = -1;
 		while (++i < BORDER_WIDTH)
 		{
 			ft_pixel_put(img, i, j, color);
-			ft_pixel_put(img, (MAP_RANGE + 1) * 20 - 1 - i, j, color);
+			ft_pixel_put(img, MAP_SIZE - 1 - i, j, color);
 		}
 	}
 }
@@ -124,7 +120,7 @@ void	ft_draw_map(t_data *data)
 	int		i;
 	int		j;
 
-	map_img.img_ptr = mlx_new_image(data->mlx_ptr, (MAP_RANGE + 1) * 20, (MAP_RANGE + 1) * 20);
+	map_img.img_ptr = mlx_new_image(data->mlx_ptr, MAP_SIZE, MAP_SIZE);
 	map_img.addr = mlx_get_data_addr(map_img.img_ptr, &map_img.bits_per_pixel, \
 	&map_img.line_length, &map_img.endian);
 	i = (data->player.pos.x / data->map.width) - MAP_RANGE / 2;
