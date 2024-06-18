@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/14 11:44:29 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/18 11:25:58 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/stat.h>
 # include <X11/X.h>
 # include <X11/Xlib.h>
+# include <sys/time.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 # include "define.h"
@@ -34,6 +35,7 @@ typedef struct s_map		t_map;
 typedef struct s_ray_data	t_ray_data;
 typedef struct s_coord		t_coord;
 typedef struct s_player		t_player;
+typedef struct s_all_img	t_all_img;
 
 struct	s_pos
 {
@@ -54,6 +56,8 @@ struct	s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			width;
+	int			height;
 	t_pos		pos;
 };
 
@@ -80,6 +84,21 @@ struct	s_player
 	t_pos	pos;
 };
 
+struct	s_all_img
+{
+	t_img	wall_img;
+	t_img	zero;
+	t_img	one;
+	t_img	two;
+	t_img	three;
+	t_img	four;
+	t_img	five;
+	t_img	six;
+	t_img	seven;
+	t_img	eight;
+	t_img	nine;
+};
+
 struct	s_data
 {
 	void		*mlx_ptr;
@@ -89,6 +108,7 @@ struct	s_data
 	t_player	player;
 	t_map		map;
 	t_ray_data	*ray_data;
+	t_all_img	all_img;
 };
 
 /*	main	*/
@@ -103,6 +123,7 @@ int		ft_get_map_width(char *argv);
 double	ft_angle_loop(double angle);
 void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
 double	ft_dist_ang(double player_angle, int *d, int flag);
+int		ft_get_color(t_img *img, int x, int y);
 
 /*	display	*/
 void	ft_display_all(t_data *data);
@@ -138,6 +159,10 @@ void	ft_draw_circle(t_data *data, int x0, int y0, int color);
 void	ft_draw_wall(t_data *data, t_img *wall_img, int k, double offset);
 void	ft_draw_all(t_data *data);
 
-void	ft_draw_line(t_data *data, double ray_angle, double dist_t);
+void	ft_draw_line_ray(t_data *data, double ray_angle, double dist_t);
+void	ft_display_fps(t_data *data, char *fps);
+void	ft_init_img(t_data *data);
+void	ft_protect_img(void *img_ptr);
+char	*fps_counter(void);
 
 #endif

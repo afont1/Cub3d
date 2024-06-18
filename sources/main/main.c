@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:14:08 by afont             #+#    #+#             */
-/*   Updated: 2024/06/12 10:01:45 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/17 10:49:24 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-//to do : checker si c'set pas un dossier
+//to do : checker si la map n'est pas un dossier

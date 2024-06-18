@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/14 09:14:32 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/18 10:00:33 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_cub3d(t_data *data, char *argv)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	ft_protect_malloc(data->win_ptr);
 
+	ft_init_img(data);
 	ft_init_player(data);
 	ft_init_map_data(data, argv);
 	ft_draw_map(data);

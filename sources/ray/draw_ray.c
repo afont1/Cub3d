@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/14 14:42:50 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/17 12:09:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	ft_ray(t_data *data)
 		if (dist_v < dist_h)
 		{
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_v), nbr_ray, 0);
-			// ft_draw_line(data, ray_angle, dist_v);
+			// ft_draw_line_ray(data, ray_angle, dist_v);
 		}
 		if (dist_h < dist_v)
 		{
 			ft_init_wall(data, fish_eye(data, ray_angle, dist_h), nbr_ray, 1);
-			// ft_draw_line(data, ray_angle, dist_h);
+			// ft_draw_line_ray(data, ray_angle, dist_h);
 		}
 		ray_angle += ONE_DR / (WIN_WIDTH / FOV);
 		ray_angle = ft_angle_loop(ray_angle);
@@ -103,7 +103,7 @@ double	fish_eye(t_data *data, double ray_angle, double dist_t)
 	return (dist_t);
 }
 
-void	ft_draw_line(t_data *data, double ray_angle, double dist_t)
+void	ft_draw_line_ray(t_data *data, double ray_angle, double dist_t)
 {
 	int	x0 = data->player.pos.x;
 	int	y0 = data->player.pos.y;

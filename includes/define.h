@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/14 14:28:43 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/18 11:31:02 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
 # define CIRCLE_RAD			5
-# define ANGLE_STEP			0.03
+# define ANGLE_STEP			0.015
 # define FOV				60
-# define WW					(WIN_WIDTH/FOV)
-# define SPEED				32
+# define SPEED				16
 # define FPS				60
 # define MAP_RANGE			16
 # define BORDER_WIDTH		5
@@ -44,6 +43,7 @@
 # define MAP_WALL_COLOR		0x2e2e2e
 # define MAP_WALL_COLOR2	0x212121	
 # define MAP_FLOOR_COLOR	0x474747
+# define MAP_SKY_COLOR		0x000000
 
 /* ************************************************************************** */
 /*	-math                                                                     */
@@ -51,6 +51,6 @@
 # define M_PI				3.14159265358979323846
 # define M_PI2				M_PI / 2
 # define M_PI3				3 * M_PI / 2
-# define ONE_DR				(0.01745329252)
+# define ONE_DR				0.01745329252
 
 #endif

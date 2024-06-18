@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/06/13 12:42:56 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/18 10:30:23 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 void	ft_destroy_img(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.wall_img.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.one.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.two.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.three.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.four.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.five.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.six.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.seven.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.eight.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.nine.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.zero.img_ptr);
 }
 
 void	ft_close_window(t_data *data)
