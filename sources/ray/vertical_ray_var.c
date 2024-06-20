@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:47:12 by afont             #+#    #+#             */
-/*   Updated: 2024/06/14 14:40:42 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/19 09:32:23 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ void	ft_vertical_var2(t_data *data, t_coord *ray_coord, t_coord *offset, \
 double ray_angle)
 {
 	double	n_tan;
-	int		ratio;
 
 	n_tan = -tan(ray_angle);
-	ratio = data->map.width;
-	ray_coord->x = (((int)data->player.pos.x / ratio) * ratio) - 0.0001;
+	ray_coord->x = (((int)data->player.pos.x / JSP) * JSP) - 0.0001;
 	ray_coord->y = (data->player.pos.x - ray_coord->x) * n_tan + \
 	data->player.pos.y;
-	offset->x = -ratio;
+	offset->x = -JSP;
 	offset->y = -offset->x * n_tan;
 }
 
@@ -31,14 +29,12 @@ void	ft_vertical_var3(t_data *data, t_coord *ray_coord, t_coord *offset, \
 double ray_angle)
 {
 	double	n_tan;
-	int		ratio;
 
 	n_tan = -tan(ray_angle);
-	ratio = data->map.width;
-	ray_coord->x = (((int)data->player.pos.x / ratio) * ratio) + ratio;
+	ray_coord->x = (((int)data->player.pos.x / JSP) * JSP) + JSP;
 	ray_coord->y = (data->player.pos.x - ray_coord->x) * n_tan + \
 	data->player.pos.y;
-	offset->x = ratio;
+	offset->x = JSP;
 	offset->y = -offset->x * n_tan;
 }
 

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/17 14:49:49 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/19 09:24:41 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,15 +135,15 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 	int			x;
 	int			y;
 
-	x = (i - (data->player.pos.x / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
-	y = (j - (data->player.pos.y / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
+	x = (i - (data->player.pos.x / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
+	y = (j - (data->player.pos.y / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
 	if (data->map.tab_map[j][i] == '1')
 		ft_draw_square(map_img, x, y, MAP_WALL_COLOR);
 	else if (data->map.tab_map[j][i] == '0')
 		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
 	else if (data->map.tab_map[j][i] == ' ')
 		ft_draw_square(map_img, x, y, 0x000000);
-	if (i == data->player.pos.x / data->map.width && j == data->player.pos.y / data->map.width)
+	if (i == data->player.pos.x / JSP && j == data->player.pos.y / JSP)
 		ft_draw_square(map_img, x, y, CUBE_COLOR);
 }
 
@@ -179,16 +179,16 @@ void	ft_draw_map(t_data *data)
 	int		i;
 	int		j;
 
-	i = (data->player.pos.x / data->map.width) - MAP_RANGE / 2;
-	while (i < (data->player.pos.x / data->map.width) + (MAP_RANGE / 2) + 1)
+	i = (data->player.pos.x / JSP) - MAP_RANGE / 2;
+	while (i < (data->player.pos.x / JSP) + (MAP_RANGE / 2) + 1)
 	{
-		j = (data->player.pos.y / data->map.width) - MAP_RANGE / 2;
-		while (j < (data->player.pos.y / data->map.width) + (MAP_RANGE / 2) + 1)
+		j = (data->player.pos.y / JSP) - MAP_RANGE / 2;
+		while (j < (data->player.pos.y / JSP) + (MAP_RANGE / 2) + 1)
 		{
 			if (i >= 0 && i < data->map.width && j >= 0 && j < data->map.height)
 				ft_draw_map_square(data, data->map.img, i, j);
 			else
-				ft_draw_square(data->map.img, (i - (data->player.pos.x / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, (j - (data->player.pos.y / data->map.width) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, 0x000000);
+				ft_draw_square(data->map.img, (i - (data->player.pos.x / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, (j - (data->player.pos.y / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, 0x000000);
 			j++;
 		}
 		i++;

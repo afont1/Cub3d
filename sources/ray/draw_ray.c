@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/17 12:09:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/20 09:02:27 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_ray(t_data *data)
 	double	dist_h;
 	double	dist_v;
 
-	ray_angle = data->player.angle - ONE_DR * FOV / 2;
+	ray_angle = data->player.angle - ONE_DR * (FOV / 2);
 	ray_angle = ft_angle_loop(ray_angle);
 	nbr_ray = -1;
 	while (++nbr_ray < WIN_WIDTH)
@@ -53,8 +53,8 @@ double	ft_horizontal_ray(t_data *data, double ray_angle)
 	{
 		while (++dof < data->map.height)
 		{
-			map_coord.y = (int)(ray_coord.y) / data->map.width;
-			map_coord.x = (int)(ray_coord.x) / data->map.width;
+			map_coord.y = (int)(ray_coord.y) / JSP;
+			map_coord.x = (int)(ray_coord.x) / JSP;
 			if (map_coord.x < data->map.width && map_coord.y < data->map.height \
 			&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 			[map_coord.y][map_coord.x] == '1')
@@ -79,8 +79,8 @@ double	ft_vertical_ray(t_data *data, double ray_angle)
 	{
 		while (++dof < data->map.width)
 		{
-			map_coord.x = (int)(ray_coord.x) / data->map.width;
-			map_coord.y = (int)(ray_coord.y) / data->map.width;
+			map_coord.x = (int)(ray_coord.x) / JSP;
+			map_coord.y = (int)(ray_coord.y) / JSP;
 			if (map_coord.x < data->map.width && map_coord.y < data->map.height \
 			&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 			[map_coord.y][map_coord.x] == '1')

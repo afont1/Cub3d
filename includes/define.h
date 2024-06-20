@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/18 11:31:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/20 08:57:39 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@
 # define WIN_HEIGHT			1080
 # define CIRCLE_RAD			5
 # define ANGLE_STEP			0.015
-# define FOV				60
+# define FOV				90
 # define SPEED				16
 # define FPS				60
 # define MAP_RANGE			16
 # define BORDER_WIDTH		5
 # define MAP_SQUARE_SIZE	20
 # define MAP_SIZE			((MAP_RANGE + 1) * MAP_SQUARE_SIZE)
+# define JSP				64
 
 /* ************************************************************************** */
 /*	-colors                                                                   */
