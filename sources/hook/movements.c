@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/06/18 10:36:46 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/20 11:28:31 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_turn_player(t_data *data, int flag)
 
 int	ft_update(t_data *data)
 {
+	ft_fov(data);
 	if (data->keys[UP])
 		ft_move_player(data, data->player.angle);
 	if (data->keys[DOWN])

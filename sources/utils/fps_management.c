@@ -6,13 +6,13 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 10:33:03 by afont             #+#    #+#             */
-/*   Updated: 2024/06/18 10:35:27 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/24 13:25:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-char	*fps_counter(void)
+char	*fps_counter(t_data *data)
 {
 	static struct	timeval last_update;
 	struct timeval	now;
@@ -32,5 +32,6 @@ char	*fps_counter(void)
 		fps = 1000000.0 / elapsed_time;
 	}
 	last_update = now;
+	data->fps = fps;
 	return (ft_itoa(fps));
 }

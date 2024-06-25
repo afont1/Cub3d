@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/18 11:25:58 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 10:10:24 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,91 +25,9 @@
 # include <sys/time.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
-# include "define.h"
 # include "../sources/GNL/get_next_line.h"
-
-typedef struct s_data		t_data;
-typedef struct s_img		t_img;
-typedef struct s_pos		t_pos;
-typedef struct s_map		t_map;
-typedef struct s_ray_data	t_ray_data;
-typedef struct s_coord		t_coord;
-typedef struct s_player		t_player;
-typedef struct s_all_img	t_all_img;
-
-struct	s_pos
-{
-	int		x;
-	int		y;
-};
-
-struct	s_coord
-{
-	double	x;
-	double	y;
-};
-
-struct	s_img
-{
-	void		*img_ptr;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-	t_pos		pos;
-};
-
-struct	s_map
-{
-	char	**tab_map;
-	int		width;
-	int		height;
-	t_img	img;
-};
-
-struct	s_ray_data
-{
-	float	line_height;
-	int		is_vertical;
-};
-
-struct	s_player
-{
-	int		color;
-	int		radius;
-	double	angle;
-	double	angle_step;
-	t_pos	pos;
-};
-
-struct	s_all_img
-{
-	t_img	wall_img;
-	t_img	zero;
-	t_img	one;
-	t_img	two;
-	t_img	three;
-	t_img	four;
-	t_img	five;
-	t_img	six;
-	t_img	seven;
-	t_img	eight;
-	t_img	nine;
-};
-
-struct	s_data
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	int			keys[256];
-	double		player_angle;
-	t_player	player;
-	t_map		map;
-	t_ray_data	*ray_data;
-	t_all_img	all_img;
-};
+# include "define.h"
+# include "struct.h"
 
 /*	main	*/
 void	ft_cub3d(t_data *data, char *argv);
@@ -122,7 +40,7 @@ int		ft_get_map_height(char *argv);
 int		ft_get_map_width(char *argv);
 double	ft_angle_loop(double angle);
 void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
-double	ft_dist_ang(double player_angle, int *d, int flag);
+double	ft_dist_ang(t_data *data, double player_angle, int *d, int flag);
 int		ft_get_color(t_img *img, int x, int y);
 
 /*	display	*/
@@ -146,8 +64,8 @@ void	ft_destroy_img(t_data *data);
 /*	ray	*/
 void	ft_ray(t_data *data);
 double	fish_eye(t_data *data, double ray_angle, double dist_t);
-double	ft_horizontal_ray(t_data *data, double ray_angle);
-double	ft_vertical_ray(t_data *data, double ray_angle);
+double	ft_horizontal_ray(t_data *data, double ray_angle, double *rx);
+double	ft_vertical_ray(t_data *data, double ray_angle, double *ry);
 int		ft_horizontal_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
 int		ft_vertical_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
 
@@ -163,6 +81,12 @@ void	ft_draw_line_ray(t_data *data, double ray_angle, double dist_t);
 void	ft_display_fps(t_data *data, char *fps);
 void	ft_init_img(t_data *data);
 void	ft_protect_img(void *img_ptr);
-char	*fps_counter(void);
+char	*fps_counter(t_data *data);
+void	ft_fov(t_data *data);
+void	ft_display_fov(t_data *data);
+void	ft_draw_fov(t_data *data, t_img img);
+void	ft_check_map(t_data *data);
+void	ft_exit_map(t_data *data, char *str);
+void	ft_exit_open(t_data *data, char *str);
 
 #endif
