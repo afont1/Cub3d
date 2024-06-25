@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:30:22 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 11:36:05 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 16:19:41 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_ray_data	t_ray_data;
 typedef struct s_coord		t_coord;
 typedef struct s_player		t_player;
 typedef struct s_all_img	t_all_img;
+typedef struct s_slope		t_slope;
+
+struct	s_slope
+{
+	float		s1;
+	float		s2;
+	float		s3;
+};
 
 struct	s_pos
 {
@@ -73,6 +81,7 @@ struct	s_player
 	float	fov_factor;
 	double	angle;
 	double	angle_step;
+	double	delta_time;
 	t_pos	pos;
 };
 
@@ -98,7 +107,6 @@ struct	s_data
 	void		*win_ptr;
 	int			keys[256];
 	double		player_angle;
-	int			fps;
 	float		vx, vy, hx, hy;
 	t_player	player;
 	t_map		map;

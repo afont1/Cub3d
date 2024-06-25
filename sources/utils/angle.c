@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:24:27 by afont             #+#    #+#             */
-/*   Updated: 2024/06/20 09:46:26 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 14:41:03 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ double	ft_angle_loop(double angle)
 	return (angle);
 }
 
-
-double	ft_dist_ang(t_data * data, double player_angle, int *d, int flag)
+double	ft_dist_ang(t_data *data, double player_angle, int *d, int flag)
 {
 	double	a;
 

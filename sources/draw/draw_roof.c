@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_all.c                                         :+:      :+:    :+:   */
+/*   draw_roof.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 10:02:03 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:53:44 by afont            ###   ########.fr       */
+/*   Created: 2024/06/25 12:50:32 by afont             #+#    #+#             */
+/*   Updated: 2024/06/25 16:38:09 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_draw_all(t_data *data)
+void	ft_draw_roof(t_img *img, int k, double offset)
 {
-	int		i;
+	int	i;
 
-	ft_ray(data);
-	ft_draw_map(data);
 	i = -1;
-	while (++i < WIN_WIDTH)
-	{
-		ft_draw_environement(data, &data->all_img.wall_img, i, \
-		(WIN_HEIGHT / 2) - (data->ray_data[i].line_height / 2));
-	}
-	ft_fusion_img(&data->all_img.wall_img, &data->map.img, 0, 0);
+	while (++i < offset)
+		if (ft_get_color(img, k, i) != MAP_SKY_COLOR)
+			ft_pixel_put(*img, k, i, MAP_SKY_COLOR);
 }

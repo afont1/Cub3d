@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/21 08:24:44 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 16:43:02 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,6 @@ void	ft_draw_square(t_img img, int x, int y, int color)
 		j = -1;
 		while (++j < MAP_SQUARE_SIZE)
 			ft_pixel_put(img, x + j, y + i, color);
-	}
-}
-
-void	ft_draw_line(t_img img, int x0, int y0, int x1, int y1)
-{
-	int dx = abs(x1 - x0);
-	int sx = x0 < x1 ? 1 : -1;
-	int dy = -abs(y1 - y0);
-	int sy = y0 < y1 ? 1 : -1;
-	int err = dx + dy;
-	int e2;
-
-	while (1)
-	{
-		ft_pixel_put(img, x0, y0, 0xFFFFFF);
-		if (x0 == x1 && y0 == y1)
-			break;
-		e2 = 2 * err;
-		if (e2 >= dy)
-		{
-			err += dy;
-			x0 += sx;
-		}
-		if (e2 <= dx)
-		{
-			err += dx;
-			y0 += sy;
-		}
 	}
 }
 
@@ -112,7 +84,9 @@ void	ft_draw_map(t_data *data)
 			if (i >= 0 && i < data->map.width && j >= 0 && j < data->map.height)
 				ft_draw_map_square(data, data->map.img, i, j);
 			else
-				ft_draw_square(data->map.img, (i - (data->player.pos.x / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, (j - (data->player.pos.y / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, 0x000000);
+				ft_draw_square(data->map.img, (i - (data->player.pos.x / JSP) \
+				+ MAP_RANGE / 2) * MAP_SQUARE_SIZE, (j - (data->player.pos.y / \
+				JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE, 0x000000);
 			j++;
 		}
 		i++;

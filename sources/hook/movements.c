@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:36:04 by afont             #+#    #+#             */
-/*   Updated: 2024/06/20 11:28:31 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 15:32:28 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,22 @@ void	ft_turn_player(t_data *data, int flag)
 	{
 		if (data->player.angle < 0)
 			data->player.angle += 2 * M_PI;
-		data->player.angle -= data->player.angle_step;
-		if (data->player.angle_step < 0.12)
-			data->player.angle_step += 0.001;
+		data->player.angle -= data->player.angle_step * data->player.delta_time;
+		if (data->player.angle_step < 4)
+			data->player.angle_step += 0.1;
 	}
 	else
 	{
 		if (data->player.angle > 2 * M_PI)
 			data->player.angle -= 2 * M_PI;
-		data->player.angle += data->player.angle_step;
-		if (data->player.angle_step < 0.12)
-			data->player.angle_step += 0.001;
+		data->player.angle += data->player.angle_step * data->player.delta_time;
+		if (data->player.angle_step < 4)
+			data->player.angle_step += 0.1;
 	}
 }
 
 int	ft_update(t_data *data)
 {
-	ft_fov(data);
 	if (data->keys[UP])
 		ft_move_player(data, data->player.angle);
 	if (data->keys[DOWN])
@@ -63,7 +62,7 @@ int	ft_update(t_data *data)
 		ft_turn_player(data, 0);
 	else if (!data->keys[LEFT])
 		data->player.angle_step = ANGLE_STEP;
-		
+	ft_fov(data);
 	ft_draw_all(data);
 	ft_display_all(data);
 	return (0);

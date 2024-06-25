@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 10:10:24 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 16:51:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void	ft_destroy_img(t_data *data);
 /*	ray	*/
 void	ft_ray(t_data *data);
 double	fish_eye(t_data *data, double ray_angle, double dist_t);
-double	ft_horizontal_ray(t_data *data, double ray_angle, double *rx);
-double	ft_vertical_ray(t_data *data, double ray_angle, double *ry);
-int		ft_horizontal_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
-int		ft_vertical_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
+double	ft_horizontal_ray(t_data *data, double ray_angle);
+double	ft_vertical_ray(t_data *data, double ray_angle);
+void	ft_horizontal_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
+void	ft_vertical_var(t_data *data, t_coord *ray_coord, t_coord *offset, double ray_angle);
 
 /*	draw	*/
 void	ft_draw_map(t_data *data);
 void	ft_pixel_put(t_img img, int x, int y, int color);
 void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
 void	ft_draw_circle(t_data *data, int x0, int y0, int color);
-void	ft_draw_wall(t_data *data, t_img *wall_img, int k, double offset);
+void	ft_draw_environement(t_data *data, t_img *wall_img, int k, double offset);
 void	ft_draw_all(t_data *data);
 
 void	ft_draw_line_ray(t_data *data, double ray_angle, double dist_t);
@@ -85,8 +85,18 @@ char	*fps_counter(t_data *data);
 void	ft_fov(t_data *data);
 void	ft_display_fov(t_data *data);
 void	ft_draw_fov(t_data *data, t_img img);
-void	ft_check_map(t_data *data);
+void	ft_check_map(t_data *data, char **map);
 void	ft_exit_map(t_data *data, char *str);
 void	ft_exit_open(t_data *data, char *str);
+void	ft_draw_roof(t_img *img, int k, double offset);
+int		ft_draw_wall(t_data *data, t_img *img, int k, double offset);
+void	ft_draw_floor(t_img *img, int k, int i);
+void	ft_sort_dist(t_data *data, t_coord dist, double ray_angle, int nbr_ray);
+void	ft_var_pos(t_pos *pos, double a1);
+void	swap(int *a, int *b);
+void	ft_swap_pos(t_pos *pos1, t_pos *pos2, t_pos *pos3);
+t_slope	ft_init_slope(t_pos pos1, t_pos pos2, t_pos pos3);
+t_pos	ft_init_x_fov(t_slope slp, t_pos pos1, t_pos pos2, int y);
+
 
 #endif

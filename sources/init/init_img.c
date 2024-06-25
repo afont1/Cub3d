@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:08:22 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 12:14:18 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/25 15:27:36 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	ft_init_img(t_data *data)
 	data->all_img.wall_img.addr = mlx_get_data_addr(data->all_img.wall_img.img_ptr, &data->all_img.wall_img.bits_per_pixel, &data->all_img.wall_img.line_length, &data->all_img.wall_img.endian);
 
 	data->map.img.img_ptr = mlx_new_image(data->mlx_ptr, MAP_SIZE, MAP_SIZE);
-	data->map.img.addr = mlx_get_data_addr(data->map.img.img_ptr, &data->map.img.bits_per_pixel, \
-	&data->map.img.line_length, &data->map.img.endian);
+	data->map.img.addr = mlx_get_data_addr(data->map.img.img_ptr, &data->map.img.bits_per_pixel, &data->map.img.line_length, &data->map.img.endian);
 	data->map.img.width = MAP_SIZE;
 	data->map.img.height = MAP_SIZE;
 
