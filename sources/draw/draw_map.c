@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:43:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 08:35:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 	y = (j - (data->player.pos.y / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
 	if (data->map.tab_map[j][i] == '1')
 		ft_draw_square(map_img, x, y, MAP_WALL_COLOR);
-	else if (data->map.tab_map[j][i] == '0')
+	if (data->map.tab_map[j][i] == '0')
 		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
-	else if (data->map.tab_map[j][i] == ' ')
+	if (data->map.tab_map[j][i] == ' ')
 		ft_draw_square(map_img, x, y, 0x000000);
 	if (i == data->player.pos.x / JSP && j == data->player.pos.y / JSP)
 		ft_draw_square(map_img, x, y, CUBE_COLOR);
 }
 
-void	ft_draw_border(t_img img, int color)
+void	ft_draw_border(t_data *data, t_img img, int color)
 {
 	int	i;
 	int	j;
@@ -52,20 +52,20 @@ void	ft_draw_border(t_img img, int color)
 	while (++j < BORDER_WIDTH)
 	{
 		i = -1;
-		while (++i < MAP_SIZE)
+		while (++i < data->map.size)
 		{
 			ft_pixel_put(img, i, j, color);
-			ft_pixel_put(img, i, MAP_SIZE - 1 - j, color);
+			ft_pixel_put(img, i, data->map.size - 1 - j, color);
 		}
 	}
 	j = -1;
-	while (++j < MAP_SIZE)
+	while (++j < data->map.size)
 	{
 		i = -1;
 		while (++i < BORDER_WIDTH)
 		{
 			ft_pixel_put(img, i, j, color);
-			ft_pixel_put(img, MAP_SIZE - 1 - i, j, color);
+			ft_pixel_put(img, data->map.size - 1 - i, j, color);
 		}
 	}
 }
@@ -92,5 +92,5 @@ void	ft_draw_map(t_data *data)
 		i++;
 	}
 	ft_draw_fov(data, data->map.img);
-	ft_draw_border(data->map.img, 0xFFFFFF);
+	ft_draw_border(data, data->map.img, 0xFFFFFF);
 }

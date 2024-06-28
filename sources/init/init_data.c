@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 15:31:56 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 08:34:22 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ void	ft_init_data(t_data *data)
 		data->keys[i] = 0;
 	data->ray_data = malloc(sizeof(t_ray_data) * WIN_WIDTH);
 	ft_protect_malloc(data->ray_data);
+	data->map.cen_map = (MAP_RANGE / 2) * MAP_SQUARE_SIZE + \
+	MAP_SQUARE_SIZE / 2;
+	data->map.size = ((MAP_RANGE + 1) * MAP_SQUARE_SIZE);
+	data->all_img.ceiling_color = -1;
+	data->all_img.floor_color = -1;
+	data->all_img.north_wall.path = NULL;
+	data->all_img.south_wall.path = NULL;
+	data->all_img.west_wall.path = NULL;
+	data->all_img.east_wall.path = NULL;
 }
 
 int	ft_init_player_pos_angle(t_data *data, int i, int j)

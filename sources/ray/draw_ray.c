@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:52:20 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 08:44:52 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ double	ft_horizontal_ray(t_data *data, double ray_angle)
 		&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 		[map_coord.y][map_coord.x] == '1')
 		{
-			data->hx = ray_coord.x;
-			data->hy = ray_coord.y;
+			data->ray_coord.hx = ray_coord.x;
+			data->ray_coord.hy = ray_coord.y;
 			return (ft_dist(data->player.pos.x, data->player.pos.y, \
 			ray_coord.x, ray_coord.y));
 		}
@@ -79,8 +79,8 @@ double	ft_vertical_ray(t_data *data, double ray_angle)
 		&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
 		[map_coord.y][map_coord.x] == '1')
 		{
-			data->vx = ray_coord.x;
-			data->vy = ray_coord.y;
+			data->ray_coord.vx = ray_coord.x;
+			data->ray_coord.vy = ray_coord.y;
 			return (ft_dist(data->player.pos.x, data->player.pos.y, \
 			ray_coord.x, ray_coord.y));
 		}
@@ -99,35 +99,3 @@ double	fish_eye(t_data *data, double ray_angle, double dist_t)
 	dist_t *= cos(fish_eye);
 	return (dist_t);
 }
-
-// void	ft_draw_line_ray(t_data *data, double ray_angle, double dist_t)
-// {
-// 	int	x0 = data->player.pos.x;
-// 	int	y0 = data->player.pos.y;
-// 	int	x1 = x0 + dist_t * cos(ray_angle);
-// 	int	y1 = y0 + dist_t * sin(ray_angle);
-// 	int dx = abs(x1 - x0);
-// 	int sx = x0 < x1 ? 1 : -1;
-// 	int dy = -abs(y1 - y0);
-// 	int sy = y0 < y1 ? 1 : -1;
-// 	int err = dx + dy;
-// 	int e2;
-
-// 	while (1)
-// 	{
-// 		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x0, y0, 0xFF0000);
-// 		if ((x0==x1&&y0==y1)||x0<0||y0<0||x0>=WIN_WIDTH||y0>=WIN_HEIGHT)
-// 			break;
-// 		e2 = 2 * err;
-// 		if (e2 >= dy)
-// 		{
-// 			err += dy;
-// 			x0 += sx;
-// 		}
-// 		if (e2 <= dx)
-// 		{
-// 			err += dx;
-// 			y0 += sy;
-// 		}
-// 	}
-// }

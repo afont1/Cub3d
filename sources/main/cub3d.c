@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 15:10:30 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 09:09:02 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	ft_cub3d(t_data *data, char *argv)
 {
-	ft_init_map_data(data, argv);
+	int	cpt;
+
+	cpt = ft_init_texture(data, argv);
+	ft_check_texture(data);
+	ft_init_map_data(data, argv, cpt);
 	ft_check_map(data, data->map.tab_map);
 	data->mlx_ptr = mlx_init();
 	ft_protect_malloc(data->mlx_ptr);
@@ -25,6 +29,8 @@ void	ft_cub3d(t_data *data, char *argv)
 	ft_init_player(data);
 	mlx_hook(data->win_ptr, 2, (1L << 0), ft_key_press, data);
 	mlx_hook(data->win_ptr, 3, (1L << 1), ft_key_release, data);
+	mlx_hook(data->win_ptr, DestroyNotify, ButtonPressMask, \
+	ft_close_window, data);
 	mlx_loop_hook(data->mlx_ptr, ft_update, data);
 	mlx_loop(data->mlx_ptr);
 }

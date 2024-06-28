@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:35:13 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 15:27:05 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/27 16:08:33 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,29 +77,31 @@ void	ft_line_to_map(t_data *data, char *line, int j)
 	data->map.tab_map[j][i] = 0;
 }
 
-void	ft_init_map_data(t_data *data, char *argv)
+void	ft_init_map_data(t_data *data, char *argv, int cpt)
 {
 	int		fd;
 	int		j;
 	char	*line;
 
+	data->map.height = ft_get_map_height(data, argv, cpt);
+	data->map.width = ft_get_map_width(data, argv, cpt);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		ft_exit_open(data, "Error open\n");
-	data->map.height = ft_get_map_height(argv);
-	data->map.width = ft_get_map_width(argv) - 1;
+		ft_exit_before(data, "Error open\n");
 	data->map.tab_map = malloc(sizeof(char *) * (data->map.height + 1));
+	ft_goto_line(fd, cpt);
 	j = -1;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		ft_line_to_map(data, line, ++j);
+		if (line[0] != '\n')
+			ft_line_to_map(data, line, ++j);
 		free(line);
 	}
 	data->map.tab_map[j + 1] = NULL;
 	if (!data->map.tab_map[0])
-		ft_exit_open(data, "Error empty map\n");
+		ft_exit_before(data, "Error empty map\n");
 	close(fd);
 }

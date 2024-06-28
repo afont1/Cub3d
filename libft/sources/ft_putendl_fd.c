@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:25:18 by afont             #+#    #+#             */
-/*   Updated: 2024/05/17 09:42:37 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/27 16:47:07 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	size_t	result;
+
 	if (s)
-		write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
+		result = write(fd, s, ft_strlen(s));
+	result = write(fd, "\n", 1);
+	(void)result;
 }

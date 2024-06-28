@@ -6,23 +6,23 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:05:19 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:31:54 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 08:34:44 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_var_pos(t_pos *pos, double a1)
+void	ft_var_pos(t_data *data, t_pos *pos, double a1)
 {
 	if ((a1 <= M_PI / 4 && a1 >= 0) || (a1 >= 345 * (M_PI / 180)))
 	{
-		pos->x = MAP_SIZE;
-		pos->y = MAP_SIZE;
+		pos->x = data->map.size;
+		pos->y = data->map.size;
 	}
 	else if (a1 >= 75 * (M_PI / 180) && a1 <= 3 * M_PI / 4)
 	{
 		pos->x = 0;
-		pos->y = MAP_SIZE;
+		pos->y = data->map.size;
 	}
 	else if (a1 >= 165 * (M_PI / 180) && a1 <= 5 * M_PI / 4)
 	{
@@ -31,7 +31,7 @@ void	ft_var_pos(t_pos *pos, double a1)
 	}
 	else if (a1 >= 255 * (M_PI / 180) && a1 <= 7 * M_PI / 4)
 	{
-		pos->x = MAP_SIZE;
+		pos->x = data->map.size;
 		pos->y = 0;
 	}
 }

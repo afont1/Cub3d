@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:59:27 by afont             #+#    #+#             */
-/*   Updated: 2024/05/17 09:42:35 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/27 16:47:03 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	size_t	result;
+
+	result = write(fd, &c, 1);
+	(void)result;
 }

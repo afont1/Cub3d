@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:29:09 by afont             #+#    #+#             */
-/*   Updated: 2024/05/17 09:42:39 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/26 12:03:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
+	size_t	result;
+
 	if (nb == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
+		result = write(fd, "-2147483648", 11);
 		return ;
 	}
 	if (nb < 0)
 	{
-		write(fd, "-", 1);
+		result = write(fd, "-", 1);
 		nb = -nb;
 	}
 	if (nb >= 10)
@@ -32,6 +34,7 @@ void	ft_putnbr_fd(int nb, int fd)
 	else
 	{
 		nb += 48;
-		write(fd, &nb, 1);
+		result = write(fd, &nb, 1);
 	}
+	(void)result;
 }

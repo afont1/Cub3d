@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 10:02:03 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:53:44 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/26 13:55:17 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_draw_all(t_data *data)
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
-		ft_draw_environement(data, &data->all_img.wall_img, i, \
+		ft_draw_environement(data, &data->all_img.env_img, i, \
 		(WIN_HEIGHT / 2) - (data->ray_data[i].line_height / 2));
 	}
-	ft_fusion_img(&data->all_img.wall_img, &data->map.img, 0, 0);
+	ft_fusion_img(&data->all_img.env_img, &data->map.img, 0, 0);
 }

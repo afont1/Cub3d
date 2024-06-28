@@ -1,9 +1,15 @@
-111
-111
-111
-111
-1E1
-111
-111
-111
-111
+NO                            images/wall/pikachu.xpm
+SO images/wall/debug.xpm
+
+WE images/wall/red.xpm
+EA images/wall/red.xpm
+
+F 220,100,0
+
+C 255,30,0
+
+
+111111111
+100000001
+100N00001
+111111111

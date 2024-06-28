@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:24:27 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 14:41:03 by afont            ###   ########.fr       */
+/*   Updated: 2024/06/28 08:34:44 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ double	ft_dist_ang(t_data *data, double player_angle, int *d, int flag)
 	a = ft_angle_loop(a);
 	if ((a <= (5 * M_PI / 4) && a >= (3 * M_PI / 4)) || (a >= (7 * M_PI / 4) \
 	&& a <= 2 * (M_PI)) || (a <= (M_PI / 4) && a >= 0))
-		*d = abs((int)(((MAP_SIZE) / 2) / cos(a)));
+		*d = abs((int)(((data->map.size) / 2) / cos(a)));
 	else
-		*d = abs((int)(((MAP_SIZE) / 2) / sin(a)));
+		*d = abs((int)(((data->map.size) / 2) / sin(a)));
 	return (a);
 }
