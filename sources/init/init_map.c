@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:35:13 by afont             #+#    #+#             */
-/*   Updated: 2024/06/27 16:08:33 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/01 08:28:22 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_map2(t_data *data, char **map, int i, int j)
 		|| map[i][j] == 'W')
 			flag++;
 	}
-	else if (map[i][j] != '1' && map[i][j] != ' ')
+	else if (map[i][j] != '1' && map[i][j] != ' ' && map[i][j] != '2')
 		ft_exit_map(data, "Error character unknown\n");
 	return (flag);
 }

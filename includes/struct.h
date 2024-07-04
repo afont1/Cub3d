@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:30:22 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:43:43 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:16:58 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_player		t_player;
 typedef struct s_all_img	t_all_img;
 typedef struct s_slope		t_slope;
 typedef struct s_ray_coord	t_ray_coord;
+typedef struct s_animation	t_animation;
 
 struct	s_slope
 {
@@ -68,12 +69,14 @@ struct	s_map
 struct	s_ray_data
 {
 	int		is_vertical;
+	int		carac;
 	double	rx;
 	double	ry;
 	double	ray_angle;
 	float	line_height;
 	float	ty_step;
 	float	ty_offset;
+	float	dist;
 };
 
 struct	s_player
@@ -81,12 +84,23 @@ struct	s_player
 	int		color;
 	int		radius;
 	int		fov;
-	double	sneak;		
+	int		speed;
 	float	fov_factor;
+	double	sneak;
 	double	angle;
 	double	angle_step;
 	double	delta_time;
+	double	planeX;
+	double	planeY;
+	double	dirX;
+	double	dirY;
 	t_pos	pos;
+};
+
+struct	s_animation
+{
+	int		sprite;
+	int		coord_x;
 };
 
 struct	s_all_img
@@ -97,6 +111,13 @@ struct	s_all_img
 	t_img	east_wall;
 	t_img	north_wall;
 	t_img	south_wall;
+	t_img	door;
+	t_img	door_open;
+	t_img	floor;
+
+	t_img		weapon[5];
+	t_animation	weapon_anim[4];
+	
 	t_img	*side_ptr;
 	t_img	env_img;
 	t_img	zero;
@@ -117,6 +138,8 @@ struct	s_ray_coord
 	float	vy;
 	float	hx;
 	float	hy;
+	int		carac_v;
+	int		carac_h;
 };
 
 struct	s_data
@@ -124,7 +147,6 @@ struct	s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			keys[256];
-	double		player_angle;
 	t_ray_coord	ray_coord;
 	t_player	player;
 	t_map		map;

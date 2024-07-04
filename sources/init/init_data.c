@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:34:22 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/04 09:33:06 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_init_player_pos_angle(t_data *data, int i, int j)
 		else if (data->map.tab_map[i][j] == 'S')
 			data->player.angle = M_PI2;
 		else if (data->map.tab_map[i][j] == 'E')
-			data->player.angle = 0;
+			data->player.angle = 0.0;
 		else if (data->map.tab_map[i][j] == 'W')
 			data->player.angle = M_PI;
 		data->map.tab_map[i][j] = '0';
@@ -72,4 +72,17 @@ void	ft_init_player(t_data *data)
 	data->player.angle_step = ANGLE_STEP;
 	data->player.fov_factor = JSP * (float)(FOV_BASE) / \
 	(float)(data->player.fov);
+	data->player.speed = SPEED;
+	data->player.planeX = 0.0;
+	data->player.planeY = tan((data->player.fov * (M_PI / 180.0)) / 2.0);
+	data->player.dirX = -1.0;
+	data->player.dirY = 0.0;
+	data->all_img.weapon_anim[0].coord_x = 650;
+	data->all_img.weapon_anim[0].sprite = 1;
+	data->all_img.weapon_anim[1].coord_x = 650;
+	data->all_img.weapon_anim[1].sprite = 0;
+	data->all_img.weapon_anim[2].coord_x = 800;
+	data->all_img.weapon_anim[2].sprite = 1;
+	data->all_img.weapon_anim[3].coord_x = 650;
+	data->all_img.weapon_anim[3].sprite = 0;
 }

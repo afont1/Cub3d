@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:12:17 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 09:09:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/03 11:31:41 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	ft_cub3d(t_data *data, char *argv)
 	ft_init_player(data);
 	mlx_hook(data->win_ptr, 2, (1L << 0), ft_key_press, data);
 	mlx_hook(data->win_ptr, 3, (1L << 1), ft_key_release, data);
-	mlx_hook(data->win_ptr, DestroyNotify, ButtonPressMask, \
-	ft_close_window, data);
+	mlx_hook(data->win_ptr, 17, (1L << 2), ft_close_window, data);
 	mlx_loop_hook(data->mlx_ptr, ft_update, data);
 	mlx_loop(data->mlx_ptr);
 }

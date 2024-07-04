@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:48:20 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:44:52 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/02 12:02:13 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ double	ft_horizontal_ray(t_data *data, double ray_angle)
 		map_coord.y = (int)(ray_coord.y) / JSP;
 		map_coord.x = (int)(ray_coord.x) / JSP;
 		if (map_coord.x < data->map.width && map_coord.y < data->map.height \
-		&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
-		[map_coord.y][map_coord.x] == '1')
+		&& map_coord.x >= 0 && map_coord.y >= 0 && (data->map.tab_map \
+		[map_coord.y][map_coord.x] == '1' || data->map.tab_map \
+		[map_coord.y][map_coord.x] == '2'))
 		{
+			data->ray_coord.carac_h = data->map.tab_map[map_coord.y][map_coord.x];
 			data->ray_coord.hx = ray_coord.x;
 			data->ray_coord.hy = ray_coord.y;
 			return (ft_dist(data->player.pos.x, data->player.pos.y, \
@@ -76,9 +78,11 @@ double	ft_vertical_ray(t_data *data, double ray_angle)
 		map_coord.x = (int)(ray_coord.x) / JSP;
 		map_coord.y = (int)(ray_coord.y) / JSP;
 		if (map_coord.x < data->map.width && map_coord.y < data->map.height \
-		&& map_coord.x >= 0 && map_coord.y >= 0 && data->map.tab_map \
-		[map_coord.y][map_coord.x] == '1')
+		&& map_coord.x >= 0 && map_coord.y >= 0 && (data->map.tab_map \
+		[map_coord.y][map_coord.x] == '1' || data->map.tab_map \
+		[map_coord.y][map_coord.x] == '2'))
 		{
+			data->ray_coord.carac_v = data->map.tab_map[map_coord.y][map_coord.x];
 			data->ray_coord.vx = ray_coord.x;
 			data->ray_coord.vy = ray_coord.y;
 			return (ft_dist(data->player.pos.x, data->player.pos.y, \

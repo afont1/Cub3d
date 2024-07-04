@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:08:22 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:46:44 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/03 09:31:01 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,38 @@ void	ft_init_img4(t_data *data)
 	data->all_img.south_wall.addr = mlx_get_data_addr(data->all_img.\
 	south_wall.img_ptr, &data->all_img.south_wall.bits_per_pixel, \
 	&data->all_img.south_wall.line_length, &data->all_img.south_wall.endian);
+
+	data->all_img.door.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/door/door.xpm", &data->all_img.door.width, &data->all_img.door.height);
+	ft_protect_img(data->all_img.door.img_ptr);
+	data->all_img.door.addr = mlx_get_data_addr(data->all_img.door.img_ptr, &data->all_img.door.bits_per_pixel, &data->all_img.door.line_length, &data->all_img.door.endian);
+
+	data->all_img.door_open.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/door/door_open2.xpm", &data->all_img.door_open.width, &data->all_img.door_open.height);
+	ft_protect_img(data->all_img.door_open.img_ptr);
+	data->all_img.door_open.addr = mlx_get_data_addr(data->all_img.door_open.img_ptr, &data->all_img.door_open.bits_per_pixel, &data->all_img.door_open.line_length, &data->all_img.door_open.endian);
+
+	data->all_img.floor.img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/floor/purplestone.xpm", &data->all_img.floor.width, &data->all_img.floor.height);
+	ft_protect_img(data->all_img.floor.img_ptr);
+	data->all_img.floor.addr = mlx_get_data_addr(data->all_img.floor.img_ptr, &data->all_img.floor.bits_per_pixel, &data->all_img.floor.line_length, &data->all_img.floor.endian);
+
+	data->all_img.weapon[0].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/weapon/knife1.xpm", &data->all_img.weapon[0].width, &data->all_img.weapon[0].height);
+	ft_protect_img(data->all_img.weapon[0].img_ptr);
+	data->all_img.weapon[0].addr = mlx_get_data_addr(data->all_img.weapon[0].img_ptr, &data->all_img.weapon[0].bits_per_pixel, &data->all_img.weapon[0].line_length, &data->all_img.weapon[0].endian);
+
+	data->all_img.weapon[1].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/weapon/knife2.xpm", &data->all_img.weapon[1].width, &data->all_img.weapon[1].height);
+	ft_protect_img(data->all_img.weapon[1].img_ptr);
+	data->all_img.weapon[1].addr = mlx_get_data_addr(data->all_img.weapon[1].img_ptr, &data->all_img.weapon[1].bits_per_pixel, &data->all_img.weapon[1].line_length, &data->all_img.weapon[1].endian);
+
+	data->all_img.weapon[2].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/weapon/knife3.xpm", &data->all_img.weapon[2].width, &data->all_img.weapon[2].height);
+	ft_protect_img(data->all_img.weapon[2].img_ptr);
+	data->all_img.weapon[2].addr = mlx_get_data_addr(data->all_img.weapon[2].img_ptr, &data->all_img.weapon[2].bits_per_pixel, &data->all_img.weapon[2].line_length, &data->all_img.weapon[2].endian);
+
+	data->all_img.weapon[3].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/weapon/knife4.xpm", &data->all_img.weapon[3].width, &data->all_img.weapon[3].height);
+	ft_protect_img(data->all_img.weapon[3].img_ptr);
+	data->all_img.weapon[3].addr = mlx_get_data_addr(data->all_img.weapon[3].img_ptr, &data->all_img.weapon[3].bits_per_pixel, &data->all_img.weapon[3].line_length, &data->all_img.weapon[3].endian);
+
+	data->all_img.weapon[4].img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, "images/weapon/knife5.xpm", &data->all_img.weapon[4].width, &data->all_img.weapon[4].height);
+	ft_protect_img(data->all_img.weapon[4].img_ptr);
+	data->all_img.weapon[4].addr = mlx_get_data_addr(data->all_img.weapon[4].img_ptr, &data->all_img.weapon[4].bits_per_pixel, &data->all_img.weapon[4].line_length, &data->all_img.weapon[4].endian);
 }
 
 void	ft_init_img3(t_data *data)

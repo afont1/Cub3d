@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:56:01 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/03 11:33:31 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
 double	ft_dist_ang(t_data *data, double player_angle, int *d, int flag);
 int		ft_get_color(t_img *img, int x, int y);
 void	ft_protect_img(void *img_ptr);
+int		ft_dist_int(int ax, int ay, int bx, int by);
+void	ft_fusion_img_resized(t_img *dst, t_img *src, int x, int y, int new_width, int new_height);
 
 /*	display	*/
 void	ft_display_all(t_data *data);
@@ -61,6 +63,9 @@ int		ft_key_press(int key, t_data *data);
 int		ft_key_release(int key, t_data *data);
 int		ft_update(t_data *data);
 void	ft_move_player(t_data *data, double angle);
+int		ft_is_mouvement(t_data *data);
+int		ft_mouse_hook(t_data *data);
+void	ft_turn_player(t_data *data, int flag);
 
 /*	init	*/
 void	ft_init_data(t_data *data);
@@ -92,7 +97,6 @@ void	ft_draw_map(t_data *data);
 void	ft_pixel_put(t_img img, int x, int y, int color);
 void	ft_draw_roof(t_data *data, t_img *img, int k, double offset);
 void	ft_init_wall(t_data *data, double dist, int nbr_ray, int is_vertical);
-void	ft_draw_circle(t_data *data, int x0, int y0, int color);
 void	ft_draw_environement(t_data *data, t_img *env_img, int k, \
 double offset);
 void	ft_draw_all(t_data *data);
@@ -102,11 +106,13 @@ void	ft_sort_dist(t_data *data, t_coord dist, double ray_angle, int nbr_ray);
 
 /*	fov	*/
 void	ft_var_pos(t_data *data, t_pos *pos, double a1);
-void	ft_fov(t_data *data);
+void	ft_sprint(t_data *data);
 void	ft_draw_fov(t_data *data, t_img img);
 void	swap(int *a, int *b);
 void	ft_swap_pos(t_pos *pos1, t_pos *pos2, t_pos *pos3);
 t_slope	ft_init_slope(t_pos pos1, t_pos pos2, t_pos pos3);
 t_pos	ft_init_x_fov(t_slope slp, t_pos pos1, t_pos pos2, int y);
+
+void	ft_animate_knife(t_data *data);
 
 #endif

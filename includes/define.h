@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:59:49 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/04 09:03:53 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define R_ARROW			65363
 # define L_ARROW			65361
 # define ESC				65307
+# define SHIFT				65505
 
 /* ************************************************************************** */
 /*	-game info                                                                */
@@ -30,14 +31,14 @@
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
 # define CIRCLE_RAD			5
-# define ANGLE_STEP			1
+# define ANGLE_STEP			2
 # define FOV_BASE			100
 # define FOV				60
-# define SPEED				1000
-# define FPS				120
+# define SPEED				300
+# define FPS				240
 
 /* ************************************************************************** */
-/*	-map info                                                                */
+/*	-map info                                                                 */
 /* ************************************************************************** */
 # define MAP_SQUARE_SIZE	20
 # define MAP_RANGE			16
@@ -49,9 +50,9 @@
 /* ************************************************************************** */
 # define CUBE_COLOR			0x006400
 # define MAP_WALL_COLOR		0x2e2e2e
-# define MAP_WALL_COLOR2	0x212121	
 # define MAP_FLOOR_COLOR	0x474747
 # define MAP_SKY_COLOR		0x100000
+# define MAP_DOOR_COLOR		0x000000
 
 /* ************************************************************************** */
 /*	-math                                                                     */

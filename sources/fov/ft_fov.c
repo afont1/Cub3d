@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fov.c                                           :+:      :+:    :+:   */
+/*   ft_sprint.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:27:10 by afont             #+#    #+#             */
-/*   Updated: 2024/06/27 16:22:31 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/03 10:51:10 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_fov(t_data *data)
+void	ft_sprint(t_data *data)
 {
-	if (data->keys[113] && data->player.fov < 158)
+	if (data->keys[2] && data->keys[UP] && data->player.fov < FOV + 10)
 	{
-		data->player.fov += 2;
+		data->player.fov += 10;
 		data->player.fov_factor = JSP * (float)(FOV_BASE) / \
 		(float)(data->player.fov);
+		data->player.speed = SPEED + 100;
 	}
-	if (data->keys[101] && data->player.fov > 2)
+	else if (!data->keys[2] || !data->keys[UP])
 	{
-		data->player.fov -= 2;
+		data->player.fov = FOV;
 		data->player.fov_factor = JSP * (float)(FOV_BASE) / \
 		(float)(data->player.fov);
+		data->player.speed = SPEED;
 	}
 }

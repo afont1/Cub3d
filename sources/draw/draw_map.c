@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:35:04 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/03 10:15:32 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@ void	ft_draw_map_square(t_data *data, t_img map_img, int i, int j)
 	y = (j - (data->player.pos.y / JSP) + MAP_RANGE / 2) * MAP_SQUARE_SIZE;
 	if (data->map.tab_map[j][i] == '1')
 		ft_draw_square(map_img, x, y, MAP_WALL_COLOR);
-	if (data->map.tab_map[j][i] == '0')
+	else if (data->map.tab_map[j][i] == '0')
 		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
-	if (data->map.tab_map[j][i] == ' ')
+	else if (data->map.tab_map[j][i] == ' ')
 		ft_draw_square(map_img, x, y, 0x000000);
+	else if (data->map.tab_map[j][i] == '2')
+		ft_draw_square(map_img, x, y, MAP_WALL_COLOR * 0.5);
+	else if (data->map.tab_map[j][i] == '3')
+		ft_draw_square(map_img, x, y, MAP_FLOOR_COLOR);
 	if (i == data->player.pos.x / JSP && j == data->player.pos.y / JSP)
 		ft_draw_square(map_img, x, y, CUBE_COLOR);
 }
