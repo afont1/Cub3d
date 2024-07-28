@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:31:29 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:59:49 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/28 10:29:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # define WIN_WIDTH			1920
 # define WIN_HEIGHT			1080
 # define CIRCLE_RAD			5
-# define ANGLE_STEP			1
+# define ANGLE_STEP			2
 # define FOV_BASE			100
 # define FOV				60
-# define SPEED				1000
+# define SPEED				500
 # define FPS				120
 
 /* ************************************************************************** */
