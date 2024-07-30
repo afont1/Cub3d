@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 09:26:56 by afont             #+#    #+#             */
-/*   Updated: 2024/06/25 16:32:00 by afont            ###   ########.fr       */
+/*   Created: 2024/07/04 12:13:42 by afont             #+#    #+#             */
+/*   Updated: 2024/07/05 13:44:06 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_pixel_put(t_img img, int x, int y, int color)
+int	ft_update(t_data *data)
 {
-	*((unsigned int *)((img.line_length * y) + (x * (img.bits_per_pixel / 8)) \
-	+ img.addr)) = color;
+	struct timeval			start;
+	struct timeval			end;
+	
+	gettimeofday(&start, NULL);
+	ft_draw_all(data);
+	gettimeofday(&end, NULL);
+	data->elapsed_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
+	
+	ft_display_all(data);
+	ft_mouvement(data);
+	printf("%f, %f\n", data->player.plane_x, data->player.plane_y);
+	ft_fps_counter(data);
+	return (0);
 }

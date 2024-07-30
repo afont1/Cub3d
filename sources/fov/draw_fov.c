@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:34:15 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:35:56 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/05 09:41:10 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_draw_fov(t_data *data, t_img img)
 	t_pos	pos3;
 	t_coord	angl;
 
+	data->player.angle = ft_angle_loop(atan2(data->player.dir_x, data->player.dir_y));
+	
 	angl.x = ft_dist_ang(data, data->player.angle, &dist.x, 0);
 	angl.y = ft_dist_ang(data, data->player.angle, &dist.y, 1);
 	pos1.x = data->map.cen_map;

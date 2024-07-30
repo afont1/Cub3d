@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_fps.c                                      :+:      :+:    :+:   */
+/*   fps_counter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 14:07:05 by afont             #+#    #+#             */
-/*   Updated: 2024/06/27 16:39:02 by afont            ###   ########.fr       */
+/*   Created: 2024/07/04 16:24:02 by afont             #+#    #+#             */
+/*   Updated: 2024/07/05 09:59:14 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,23 @@ void	ft_display_fps3(t_data *data, char *fps)
 	ft_display_fps6(data, fps);
 }
 
-void	ft_display_fps(t_data *data, char *fps)
+void	ft_fps_counter(t_data *data)
 {
+	static double	diff;
+	static char		*fps;
+
+	diff += data->elapsed_time;
+	if (!fps)
+		fps = ft_itoa((int)(1000.0 / data->elapsed_time));
+	if (diff >= 1000)
+	{
+		fps = ft_itoa((int)(1000.0 / data->elapsed_time));
+		diff = 0;
+	}
 	if (ft_strlen(fps) >= 1)
 		ft_display_fps1(data, fps);
 	if (ft_strlen(fps) >= 2)
 		ft_display_fps2(data, fps);
 	if (ft_strlen(fps) >= 3)
 		ft_display_fps3(data, fps);
-	free(fps);
 }

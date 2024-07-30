@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_floor.c                                       :+:      :+:    :+:   */
+/*   angle_loop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 12:53:51 by afont             #+#    #+#             */
-/*   Updated: 2024/07/04 10:56:35 by afont            ###   ########.fr       */
+/*   Created: 2024/07/05 09:39:40 by afont             #+#    #+#             */
+/*   Updated: 2024/07/05 09:39:47 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_draw_floor(t_data *data, t_img *img, int k, int i)
+double	ft_angle_loop(double angle)
 {
-	while (i < WIN_HEIGHT)
-	{
-		if (ft_get_color(img, k, i) != data->all_img.floor_color)
-			ft_pixel_put(*img, k, i, data->all_img.floor_color);
-		i++;
-	}
+	if (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	if (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

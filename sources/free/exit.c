@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 10:00:23 by afont             #+#    #+#             */
-/*   Updated: 2024/06/27 15:17:40 by afont            ###   ########.fr       */
+/*   Created: 2024/07/04 12:27:49 by afont             #+#    #+#             */
+/*   Updated: 2024/07/04 12:27:58 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_exit_map(t_data *data, char *str)
 	while (++i < data->map.height)
 		free(data->map.tab_map[i]);
 	free(data->map.tab_map);
-	free(data->ray_data);
 	free(data);
 	printf("%s", str);
 	exit(0);
@@ -30,8 +29,6 @@ void	ft_exit_before(t_data *data, char *str)
 {
 	if (data->map.tab_map)
 		free(data->map.tab_map);
-	if (data->ray_data)
-		free(data->ray_data);
 	if (data)
 		free(data);
 	printf("%s", str);

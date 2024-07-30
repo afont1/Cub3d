@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_distance.c                                      :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 12:09:06 by afont             #+#    #+#             */
-/*   Updated: 2024/07/01 09:16:05 by afont            ###   ########.fr       */
+/*   Created: 2024/07/04 12:25:29 by afont             #+#    #+#             */
+/*   Updated: 2024/07/04 12:25:51 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-double	ft_dist(double ax, double ay, double bx, double by)
+int	ft_get_color(t_img *img, int x, int y)
 {
-	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
+	return (*((unsigned int *)(img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8)))));
 }
 
-int	ft_dist_int(int ax, int ay, int bx, int by)
+void	ft_pixel_put(t_img img, int x, int y, int color)
 {
-	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
+	*((unsigned int *)((img.line_length * y) + (x * (img.bits_per_pixel / 8)) + img.addr)) = color;
 }
