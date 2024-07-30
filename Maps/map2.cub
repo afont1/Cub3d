@@ -1,5 +1,5 @@
-NO                            images/wall/pikachu.xpm
-SO images/wall/debug.xpm
+NO                            images/wall/red.xpm
+SO images/wall/red.xpm
 
 WE images/wall/red.xpm
 EA images/wall/red.xpm
@@ -12,4 +12,6 @@ C 255,30,0
 111111111
 100000001
 100N00001
-111111111
+111111111111111
+
+asd

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:26:25 by afont             #+#    #+#             */
-/*   Updated: 2024/06/27 16:05:12 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/30 14:35:37 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	ft_get_map_height(t_data *data, char *argv, int cpt)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		if (ft_check_empty(height, line))
 			break ;
-		if (line[0] != '\n')
+		if (height && line[0] != '\n')
+			height++;
+		if (line[0] != '\n' && !height)
 			height++;
 		free(line);
 	}
@@ -50,11 +52,14 @@ int	ft_get_map_width(t_data *data, char *argv, int cpt)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		// printf("line = %s;\n", line);
+		if (ft_check_empty(width, line))
 			break ;
-		if (line[0] != '\n')
-			if (width < (int)ft_strlen(line))
-				width = (int)ft_strlen(line);
+		if (width && line[0] != '\n')
+			if (width < (int)ft_strlen(line) + 1)
+				width = (int)ft_strlen(line) + 1;
+		if (line[0] != '\n' && !width)
+			width = (int)ft_strlen(line) + 1;
 		free(line);
 	}
 	close(fd);
