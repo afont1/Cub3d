@@ -1,12 +1,8 @@
                                   NO                            images/wall/pikachu.xpm
-SO images/wall/debug.xpm
+SO images/wall/grass.xpm
 
 WE images/wall/red.xpm
 EA images/wall/red.xpm
-
-F 0,255,0
-
-C 255,30,0
 
 
 
