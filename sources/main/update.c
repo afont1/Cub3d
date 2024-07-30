@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:13:42 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 13:44:06 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/30 09:08:53 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_update(t_data *data)
 	
 	ft_display_all(data);
 	ft_mouvement(data);
-	printf("%f, %f\n", data->player.plane_x, data->player.plane_y);
+	// printf("%f, %f\n", data->player.plane_x, data->player.plane_y);
 	ft_fps_counter(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: afont <afont@student.42nice.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 09:25:13 by afont             #+#    #+#              #
-#    Updated: 2024/06/26 12:01:27 by afont            ###   ########.fr        #
+#    Updated: 2024/07/30 09:00:18 by afont            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -rf
 NAME	=	libft.a
-OPTI_FLAGS = -Ofast -flto -march=native -funroll-loops -fexpensive-optimizations -finline-functions -fomit-frame-pointer
+OPTI_FLAGS = -Ofast -march=native -funroll-loops -fexpensive-optimizations -finline-functions -fomit-frame-pointer
 TOTAL_FILES = $(words $(SRCS))
 
 $(OBJ_DIR)/%.o: %.c

@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:56:07 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 12:22:10 by afont            ###   ########.fr       */
+/*   Updated: 2024/07/30 09:13:20 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ void	ft_door(t_data *data, double move_speed, int flag)
 	int		x_move;
 	int		y_move;
 
-	x_move = (int)(data->player.x + data->player.dir_x * move_speed * 50);
-	y_move = (int)(data->player.y + data->player.dir_y * move_speed * 50);
-	if (flag && data->map.tab_map[x_move][y_move] == '2')
+	x_move = (int)(data->player.x + data->player.dir_x * move_speed * 5);
+	y_move = (int)(data->player.y + data->player.dir_y * move_speed * 5);
+	if ((x_move >= 0 && x_move < data->map.height) && (y_move >= 0 && y_move < data->map.width))
 	{
-		data->map.tab_map[x_move][y_move] = '3';
-		last_door.x = x_move;
-		last_door.y = y_move;
+		if (flag && data->map.tab_map[x_move][y_move] == '2')
+		{
+			data->map.tab_map[x_move][y_move] = '3';
+			last_door.x = x_move;
+			last_door.y = y_move;
+		}
 	}
 	if (last_door.x && ft_dist_int((int)data->player.x, (int)data->player.y, last_door.x, last_door.y) > 3)
 	{
