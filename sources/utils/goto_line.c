@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 16:02:33 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 09:07:53 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 02:37:30 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ void	ft_goto_line(int fd, int cpt)
 	while (++j < cpt)
 	{
 		free(get_next_line(fd));
-		// printf("%s\n", get_next_line(fd));
 	}
 }

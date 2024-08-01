@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:58:18 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 12:07:46 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 05:15:09 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,30 @@ struct	s_img
 
 struct	s_all_img
 {
-	t_img	west_wall;
-	t_img	east_wall;
-	t_img	north_wall;
-	t_img	south_wall;
-	t_img	door;
-	t_img	door_open;
-	t_img	floor;
-	t_img	ceiling;
+	t_img				west_wall;
+	t_img				east_wall;
+	t_img				north_wall;
+	t_img				south_wall;
+	t_img				door;
+	t_img				door_open;
+	t_img				floor;
+	t_img				ceiling;
 
-	t_img		weapon[5];
-	t_animation	weapon_anim[4];
-	
-	t_img	deco1;
-	
-	t_img	*side_ptr;
-	t_img	env_img;
-	t_img	zero;
-	t_img	one;
-	t_img	two;
-	t_img	three;
-	t_img	four;
-	t_img	five;
-	t_img	six;
-	t_img	seven;
-	t_img	eight;
-	t_img	nine;
+	t_img				weapon[5];
+	t_animation			weapon_anim[4];
+	t_img				deco1;
+	t_img				*side_ptr;
+	t_img				env_img;
+	t_img				zero;
+	t_img				one;
+	t_img				two;
+	t_img				three;
+	t_img				four;
+	t_img				five;
+	t_img				six;
+	t_img				seven;
+	t_img				eight;
+	t_img				nine;
 };
 
 struct	s_player
@@ -114,6 +112,46 @@ struct	s_map
 	t_img	img;
 };
 
+typedef struct s_floor_ray
+{
+	float	ray_dir_x0;
+	float	ray_dir_y0;
+	float	ray_dir_x1;
+	float	ray_dir_y1;
+	float	player_z;
+	float	row_distance;
+	float	floor_step_x;
+	float	floor_step_y;
+	float	floor_x;
+	float	floor_y;
+}	t_floor_ray;
+
+typedef struct s_wall_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
+	int		tex_y;
+}	t_wall_ray;
+
 struct	s_data
 {
 	int			keys[256];
@@ -123,6 +161,8 @@ struct	s_data
 	t_player	player;
 	t_map		map;
 	t_all_img	all_img;
+	t_floor_ray	floor_ray;
+	t_wall_ray	wall_ray;
 };
 
 #endif

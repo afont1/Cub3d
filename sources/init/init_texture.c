@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:48:11 by afont             #+#    #+#             */
-/*   Updated: 2024/07/04 12:38:37 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 01:19:51 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,18 @@ void	ft_path_to_texture(t_data *data, char *line)
 
 void	ft_check_texture(t_data *data)
 {
-	if (!data->all_img.north_wall.path || !data->all_img.south_wall.path || !data->all_img.west_wall.path || !data->all_img.east_wall.path)
+	if (!data->all_img.north_wall.path
+		|| !data->all_img.south_wall.path
+		|| !data->all_img.west_wall.path || !data->all_img.east_wall.path)
 		ft_exit_map(data, "Error texture\n");
-	data->all_img.north_wall.path[ft_strlen(data->all_img.north_wall.path) - 1] = '\0';
-	data->all_img.south_wall.path[ft_strlen(data->all_img.south_wall.path) - 1] = '\0';
-	data->all_img.west_wall.path[ft_strlen(data->all_img.west_wall.path) - 1] = '\0';
-	data->all_img.east_wall.path[ft_strlen(data->all_img.east_wall.path) - 1] = '\0';
+	data->all_img.north_wall.path[ft_strlen
+		(data->all_img.north_wall.path) - 1] = '\0';
+	data->all_img.south_wall.path[ft_strlen
+		(data->all_img.south_wall.path) - 1] = '\0';
+	data->all_img.west_wall.path[ft_strlen
+		(data->all_img.west_wall.path) - 1] = '\0';
+	data->all_img.east_wall.path[ft_strlen
+		(data->all_img.east_wall.path) - 1] = '\0';
 }
 
 int	ft_init_texture(t_data *data, char *argv)

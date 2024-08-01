@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:52:08 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 13:44:43 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 00:32:54 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@ void	ft_init_data(t_data *data)
 	data->all_img.weapon_anim[3].sprite = 0;
 }
 
+void	ft_init_player_pos_angle2(t_data *data, int i, int j)
+{
+	if (data->map.tab_map[i][j] == 'E' || data->map.tab_map[i][j] == 'W')
+	{
+		if (data->map.tab_map[i][j] == 'E')
+		{
+			data->player.dir_x = 0.0;
+			data->player.dir_y = 1.0;
+			data->player.plane_x = 0.726;
+			data->player.plane_y = 0.0;
+		}
+		else if (data->map.tab_map[i][j] == 'W')
+		{
+			data->player.dir_x = 0.0;
+			data->player.dir_y = -1.0;
+			data->player.plane_x = -0.726;
+			data->player.plane_y = 0.0;
+		}
+	}
+}
+
 int	ft_init_player_pos_angle(t_data *data, int i, int j)
 {
 	if (data->map.tab_map[i][j] == 'N' || data->map.tab_map[i][j] == 'S' \
@@ -51,20 +72,7 @@ int	ft_init_player_pos_angle(t_data *data, int i, int j)
 			data->player.plane_x = 0.0;
 			data->player.plane_y = -0.726;
 		}
-		else if (data->map.tab_map[i][j] == 'E')
-		{
-			data->player.dir_x = 0.0;
-			data->player.dir_y = 1.0;
-			data->player.plane_x = 0.726;
-			data->player.plane_y = 0.0;
-		}
-		else if (data->map.tab_map[i][j] == 'W')
-		{
-			data->player.dir_x = 0.0;
-			data->player.dir_y = -1.0;
-			data->player.plane_x = -0.726;
-			data->player.plane_y = 0.0;
-		}
+		ft_init_player_pos_angle2(data, i, j);
 		data->map.tab_map[i][j] = '0';
 		data->player.x = i + 0.5;
 		data->player.y = j + 0.5;

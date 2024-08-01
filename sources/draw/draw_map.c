@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:39 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 09:22:03 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 00:17:08 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,11 @@ void	ft_draw_map(t_data *data)
 			if (j >= 0 && j < data->map.width && i >= 0 && i < data->map.height)
 				ft_draw_map_square(data, data->map.img, i, j);
 			else
-				ft_draw_square(data->map.img, (j - (int)data->player.y + MAP_RANGE / 2) * MAP_SQUARE_SIZE, (i - (int)data->player.x + MAP_RANGE / 2) * MAP_SQUARE_SIZE, 0x000000);
+				ft_draw_square(data->map.img,
+					(j - (int)data->player.y + MAP_RANGE / 2)
+					* MAP_SQUARE_SIZE,
+					(i - (int)data->player.x + MAP_RANGE / 2)
+					* MAP_SQUARE_SIZE, 0x000000);
 			j++;
 		}
 		i++;

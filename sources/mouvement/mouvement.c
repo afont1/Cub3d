@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:11:42 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 12:23:08 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 05:02:47 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,36 @@ void	ft_move_player(t_data *data, double move_speed, int flag)
 {
 	if (flag)
 	{
-		if (!ft_collision(data, (int)(data->player.x + data->player.dir_x * move_speed), (int)data->player.y))
+		if (!ft_collision(data, (int)(data->player.x + data->player.dir_x
+				* move_speed), (int)data->player.y))
 			data->player.x += data->player.dir_x * move_speed;
-		if (!ft_collision(data, (int)data->player.x, (int)(data->player.y + data->player.dir_y * move_speed)))
+		if (!ft_collision(data, (int)data->player.x,
+				(int)(data->player.y + data->player.dir_y * move_speed)))
 			data->player.y += data->player.dir_y * move_speed;
 		ft_door(data, move_speed, 1);
 	}
 	else
 	{
-		if (!ft_collision(data, (int)(data->player.x - data->player.dir_x * move_speed), (int)data->player.y))
+		if (!ft_collision(data, (int)(data->player.x
+				- data->player.dir_x * move_speed), (int)data->player.y))
 			data->player.x -= data->player.dir_x * move_speed;
-		if (!ft_collision(data, (int)data->player.x, (int)(data->player.y - data->player.dir_y * move_speed)))
+		if (!ft_collision(data, (int)data->player.x, (int)(data->player.y
+				- data->player.dir_y * move_speed)))
 			data->player.y -= data->player.dir_y * move_speed;
 		ft_door(data, move_speed, 0);
 	}
+}
+
+void	ft_turn_player2(t_data *data, double rot_s, double old_d, double old_pl)
+{
+	data->player.dir_x = (data->player.dir_x
+			* cos(rot_s) - data->player.dir_y * sin(rot_s));
+	data->player.dir_y = (old_d
+			* sin(rot_s) + data->player.dir_y * cos(rot_s));
+	data->player.plane_x = (data->player.plane_x
+			* cos(rot_s) - data->player.plane_y * sin(rot_s));
+	data->player.plane_y = (old_pl
+			* sin(rot_s) + data->player.plane_y * cos(rot_s));
 }
 
 void	ft_turn_player(t_data *data, double rot_speed, int flag)
@@ -41,19 +57,20 @@ void	ft_turn_player(t_data *data, double rot_speed, int flag)
 	old_plane_x = data->player.plane_x;
 	if (flag)
 	{
-		data->player.dir_x = data->player.dir_x * cos(-rot_speed) - data->player.dir_y * sin(-rot_speed);
-		data->player.dir_y = old_dir_x * sin(-rot_speed) + data->player.dir_y * cos(-rot_speed);
-		data->player.plane_x = data->player.plane_x * cos(-rot_speed) - data->player.plane_y * sin(-rot_speed);
-		data->player.plane_y = old_plane_x * sin(-rot_speed) + data->player.plane_y * cos(-rot_speed);
+		data->player.dir_x = (data->player.dir_x
+				* cos(-rot_speed) - data->player.dir_y * sin(-rot_speed));
+		data->player.dir_y = (old_dir_x
+				* sin(-rot_speed) + data->player.dir_y * cos(-rot_speed));
+		data->player.plane_x = (data->player.plane_x
+				* cos(-rot_speed) - data->player.plane_y * sin(-rot_speed));
+		data->player.plane_y = (old_plane_x
+				* sin(-rot_speed) + data->player.plane_y * cos(-rot_speed));
 		if (data->player.angle_step < 0.0055)
 			data->player.angle_step += 0.00003;
 	}
 	else
 	{
-		data->player.dir_x = data->player.dir_x * cos(rot_speed) - data->player.dir_y * sin(rot_speed);
-		data->player.dir_y = old_dir_x * sin(rot_speed) + data->player.dir_y * cos(rot_speed);
-		data->player.plane_x = data->player.plane_x * cos(rot_speed) - data->player.plane_y * sin(rot_speed);
-		data->player.plane_y = old_plane_x * sin(rot_speed) + data->player.plane_y * cos(rot_speed);
+		ft_turn_player2(data, rot_speed, old_dir_x, old_plane_x);
 		if (data->player.angle_step < 0.0055)
 			data->player.angle_step += 0.00003;
 	}
@@ -79,7 +96,7 @@ void	ft_mouvement(t_data *data)
 {
 	double	rot_speed;
 	double	move_speed;
-	
+
 	rot_speed = data->elapsed_time * data->player.angle_step;
 	move_speed = data->elapsed_time * data->player.speed;
 	if (data->keys[UP])

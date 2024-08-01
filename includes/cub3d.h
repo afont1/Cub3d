@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/07/05 12:22:23 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/01 05:08:23 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@
 # include "define.h"
 # include "struct.h"
 
-
-
+void	for_ft_img(t_data *data);
+void	for_ft_img2(t_data *data);
+void	for_ft_img3(t_data *data);
+void	for_ft_img4(t_data *data);
+void	for_ft_img5(t_data *data);
 void	ft_init_data(t_data *data);
 void	ft_check_file_name(char *av);
 void	ft_protect_malloc(void *ptr);
@@ -86,5 +89,18 @@ void	ft_door(t_data *data, double move_speed, int flag);
 int		ft_dist_int(int ax, int ay, int bx, int by);
 int		ft_check_color(t_data *data, int map_x, int map_y, int tex_x, int tex_y);
 int		ft_collision(t_data *data, int map_x, int map_y);
+
+void	init_floor_ray(t_data *data, t_floor_ray *fr, int y);
+void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
+void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
+void	calculate_delta_distances(t_wall_ray *wr);
+void	calculate_initial_distances(t_data *data, t_wall_ray *wr);
+void	init_wall_ray(t_data *data, t_wall_ray *wr, int x);
+void	calculate_wall_hit(t_data *data, t_wall_ray *wr);
+void	calculate_wall_dimensions(t_wall_ray *wr);
+void	draw_wall_stripe(t_data *data, t_wall_ray *wr, int x);
+void	draw_wall_column(t_data *data, int x);
+void	draw_wall(t_data *data);
+void	ft_draw_ray(t_data *data);
 
 #endif
