@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 05:08:23 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/01 11:45:56 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_swap_pos(t_pos *pos1, t_pos *pos2, t_pos *pos3);
 void	swap(int *a, int *b);
 double	ft_angle_loop(double angle);
 void	ft_draw_all(t_data *data);
-void	ft_fusion_img_resized(t_img *dst, t_img *src, int x, int y, int new_width, int new_height);
+void	ft_fusion_img_resized(t_img *dst, t_img *src, int x);
 void	ft_fusion_img(t_img *dst, t_img *src, int x, int y);
 void	ft_draw_weapon(t_data *data);
 int		ft_is_mouvement(t_data *data);
@@ -90,17 +90,17 @@ int		ft_dist_int(int ax, int ay, int bx, int by);
 int		ft_check_color(t_data *data, int map_x, int map_y, int tex_x, int tex_y);
 int		ft_collision(t_data *data, int map_x, int map_y);
 
-void	init_floor_ray(t_data *data, t_floor_ray *fr, int y);
-void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
-void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
-void	calculate_delta_distances(t_wall_ray *wr);
-void	calculate_initial_distances(t_data *data, t_wall_ray *wr);
-void	init_wall_ray(t_data *data, t_wall_ray *wr, int x);
-void	calculate_wall_hit(t_data *data, t_wall_ray *wr);
-void	calculate_wall_dimensions(t_wall_ray *wr);
-void	draw_wall_stripe(t_data *data, t_wall_ray *wr, int x);
-void	draw_wall_column(t_data *data, int x);
-void	draw_wall(t_data *data);
-void	ft_draw_ray(t_data *data);
+// void	init_floor_ray(t_data *data, t_floor_ray *fr, int y);
+// void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
+// void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
+// void	calculate_delta_distances(t_wall_ray *wr);
+// void	calculate_initial_distances(t_data *data, t_wall_ray *wr);
+// void	init_wall_ray(t_data *data, t_wall_ray *wr, int x);
+// void	calculate_wall_hit(t_data *data, t_wall_ray *wr);
+// void	calculate_wall_dimensions(t_wall_ray *wr);
+// void	draw_wall_stripe(t_data *data, t_wall_ray *wr, int x);
+// void	draw_wall_column(t_data *data, int x);
+// void	draw_wall(t_data *data);
+// void	ft_draw_ray(t_data *data);
 
 #endif

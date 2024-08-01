@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:49:11 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 02:36:56 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/01 12:29:40 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,33 @@ void	ft_fusion_img(t_img *dst, t_img *src, int x, int y)
 	}
 }
 
-void	ft_fusion_img_resized(t_img *dst, t_img *src, int x, int y, int new_width, int new_height)
+void	ft_fusion2(t_img *dst, t_img *src)
 {
-	float	x_ratio;
-	float	y_ratio;
 	int		i;
 	int		j;
 	float	px;
 	float	py;
-	int		color;
 
-	x_ratio = src->width / (float)new_width;
-	y_ratio = src->height / (float)new_height;
 	i = -1;
-	while (++i < new_width)
+	while (++i < 1024)
 	{
 		j = -1;
-		while (++j < new_height)
+		while (++j < 1024)
 		{
-			px = floor(i * x_ratio);
-			py = floor(j * y_ratio);
-			color = ft_get_color(src, (int)px, (int)py);
-			if (color != -16777216)
-				ft_pixel_put(*dst, x + i, y + j, color);
+			px = floor(i * src->x_ratio);
+			py = floor(j * src->y_ratio);
+			src->color = ft_get_color(src, (int)px, (int)py);
+			if (src->color != -16777216)
+				ft_pixel_put(*dst, src->x + i, src->y + j, src->color);
 		}
 	}
+}
+
+void	ft_fusion_img_resized(t_img *dst, t_img *src, int x)
+{
+	src->x_ratio = src->width / (float)NEW_WIDTH;
+	src->y_ratio = src->height / (float)NEW_HEIGHT;
+	src->y = 56;
+	src->x = x;
+	ft_fusion2(dst, src);
 }

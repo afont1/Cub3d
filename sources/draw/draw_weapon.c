@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:52:55 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 02:32:07 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/01 11:46:05 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void	ft_draw_weapon(t_data *data)
 	}
 	ft_fusion_img_resized(&data->all_img.env_img, &data->all_img.weapon
 	[data->all_img.weapon_anim[current_sprite].sprite],
-		data->all_img.weapon_anim[current_sprite].coord_x,
-		56, 1024, 1024);
+		data->all_img.weapon_anim[current_sprite].coord_x);
 }

@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:58:18 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 05:15:09 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/01 11:43:19 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ struct	s_img
 {
 	void		*img_ptr;
 	char		*addr;
+	float		x_ratio;
+	float		y_ratio;
+	int 		color;
+	int			x;
+	int			y;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
