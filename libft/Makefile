@@ -6,7 +6,7 @@
 #    By: afont <afont@student.42nice.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 09:25:13 by afont             #+#    #+#              #
-#    Updated: 2024/07/28 10:23:30 by afont            ###   ########.fr        #
+#    Updated: 2024/08/03 11:32:15 by afont            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,12 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
-	i=1; \
-	while [ $$i -le $$count ]; do \
-		echo -n "▰"; \
-		i=$$((i + 1)); \
-	done; \
-	while [ $$i -le $(TOTAL_FILES) ]; do \
-		echo -n "═"; \
-		i=$$((i + 1)); \
-	done; \
-	echo -n "  $$((($$count * 100) / $(TOTAL_FILES)))% Compiling $$(basename $<)...\r"
+	str="████████████████████"; \
+	len_str=$$((($$count * 20) / $(TOTAL_FILES) * 3)); \
+	len_space=$$((20 - $$len_str / 3)); \
+	percent=$$((($$count * 100) / $(TOTAL_FILES))); \
+	# echo -n "$$percent"; \
+	printf "\033[0;32m%.*s%*c\033[0m%% %d   \r" $$len_str $$str $$len_space ' ' $$percent; \
 
 all : $(NAME)
 

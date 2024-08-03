@@ -18,16 +18,10 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -g -c $< -o $@
 	@count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
-	i=1; \
-	while [ $$i -le $$count ]; do \
-		echo -n "▰"; \
-		i=$$((i + 1)); \
-	done; \
-	while [ $$i -le $(TOTAL_FILES) ]; do \
-		echo -n "═"; \
-		i=$$((i + 1)); \
-	done; \
-	echo -n "  $$((($$count * 100) / $(TOTAL_FILES)))% Compiling $$(basename $<)...\r"
+	str="████████████████████"; \
+	len_str=$$((($$count * 20) / $(TOTAL_FILES) * 3)); \
+	len_space=$$((20 - $$len_str / 3)); \
+	printf "\033[0;32m%.*s%*c\033[0m%% %d\r" $$len_str $$str $$len_space ' ' $$((($$count * 100) / $(TOTAL_FILES))); \
 
 $(NAME): $(OBJS) includes/cub3d.h
 	@make -C libft --no-print-directory
