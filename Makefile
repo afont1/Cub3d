@@ -17,7 +17,7 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@tput civis
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -g -c $< -o $@
-	@count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
+	count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
 	str="████████████████████"; \
 	len_str=$$((($$count * 20) / $(TOTAL_FILES) * 3)); \
 	len_space=$$((20 - $$len_str / 3)); \
