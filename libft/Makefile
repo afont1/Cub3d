@@ -6,7 +6,7 @@
 #    By: afont <afont@student.42nice.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 09:25:13 by afont             #+#    #+#              #
-#    Updated: 2024/08/03 11:32:15 by afont            ###   ########.fr        #
+#    Updated: 2024/08/03 11:44:56 by afont            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(OBJ_DIR)/%.o: %.c
 	len_space=$$((20 - $$len_str / 3)); \
 	percent=$$((($$count * 100) / $(TOTAL_FILES))); \
 	# echo -n "$$percent"; \
-	printf "\033[0;32m%.*s%*c\033[0m%% %d   \r" $$len_str $$str $$len_space ' ' $$percent; \
+	printf "\033[36m%.*s%*c\033[0m%% %d   \r" $$len_str $$str $$len_space ' ' $$percent; \
 
 all : $(NAME)
 
