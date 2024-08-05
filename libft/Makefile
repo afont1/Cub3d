@@ -6,7 +6,7 @@
 #    By: afont <afont@student.42nice.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 09:25:13 by afont             #+#    #+#              #
-#    Updated: 2024/08/03 11:48:56 by afont            ###   ########.fr        #
+#    Updated: 2024/08/05 10:30:50 by afont            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra
 RM		=	rm -rf
 NAME	=	libft.a
+OPTI_FLAGS = -Ofast -march=native -funroll-loops -fexpensive-optimizations -finline-functions -fomit-frame-pointer
 TOTAL_FILES = $(words $(SRCS))
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(OPTI_FLAGS) -c $< -o $@
 	count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
 	str="████████████████████"; \
 	len_str=$$((($$count * 20) / $(TOTAL_FILES) * 3)); \

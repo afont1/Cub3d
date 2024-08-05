@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/07/30 12:48:02 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/05 10:19:25 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		ft_get_color(t_img *img, int x, int y);
 void	ft_protect_img(void *img_ptr);
 int		ft_empty_line(char *line);
 int		ft_check_empty(int j, char *line);
+void	ft_end_gnl(int fd);
 
 /*	display	*/
 void	ft_display_all(t_data *data);

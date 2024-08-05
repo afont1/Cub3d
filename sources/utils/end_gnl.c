@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   empty_line.c                                       :+:      :+:    :+:   */
+/*   end_gnl.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 10:46:35 by afont             #+#    #+#             */
-/*   Updated: 2024/08/05 10:23:34 by afont            ###   ########.fr       */
+/*   Created: 2024/08/05 10:17:02 by afont             #+#    #+#             */
+/*   Updated: 2024/08/05 10:18:42 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	ft_empty_line(char *line)
+void	ft_end_gnl(int fd)
 {
-	int	i;
-
-	i = -1;
-	while (line[++i])
-		if (line[i] != ' ' && line[i] != '\n')
-			return (0);
-	return (1);
-}
-
-int	ft_check_empty(int nbr, char *line)
-{
-	if (!line)
-		return (1);
-	if (nbr > 0 && ft_empty_line(line))
+	char *line;
+	
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		free(line);
-		return (1);
 	}
-	return (0);
+	close(fd);
 }

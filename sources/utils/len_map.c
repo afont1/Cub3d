@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:26:25 by afont             #+#    #+#             */
-/*   Updated: 2024/07/30 14:35:37 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/05 10:23:08 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_get_map_width(t_data *data, char *argv, int cpt)
 	while (1)
 	{
 		line = get_next_line(fd);
-		// printf("line = %s;\n", line);
 		if (ft_check_empty(width, line))
 			break ;
 		if (width && line[0] != '\n')
