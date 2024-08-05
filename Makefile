@@ -17,23 +17,17 @@ $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@tput civis
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(OPTI_FLAGS) -c $< -o $@
-	@count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
-	i=1; \
-	while [ $$i -le $$count ]; do \
-		echo -n "▰"; \
-		i=$$((i + 1)); \
-	done; \
-	while [ $$i -le $(TOTAL_FILES) ]; do \
-		echo -n "═"; \
-		i=$$((i + 1)); \
-	done; \
-	echo -n "  $$((($$count * 100) / $(TOTAL_FILES)))% Compiling $$(basename $<)...\r"
+	count=$$(find $(OBJ_DIR) -name '*.o' | wc -l); \
+	str="████████████████████"; \
+	len_str=$$((($$count * 20) / $(TOTAL_FILES) * 3)); \
+	len_space=$$((20 - $$len_str / 3)); \
+	printf "\033[36m%.*s%*c\033[0m%% %d\r" $$len_str $$str $$len_space ' ' $$((($$count * 100) / $(TOTAL_FILES))); \
 
 $(NAME): $(OBJS) includes/cub3d.h
 	@make -C libft --no-print-directory
 	@printf "\033[2K\r"
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX_FLAGS) $(MATH_FLAGS) -o $(NAME)
-	@echo -n "   \033[37;42;1m$(NAME) created\033[0m\n"
+	@echo -n "   \033[37;46;1m$(NAME) created\033[0m\n"
 	@tput cnorm
 
 run: $(NAME)
