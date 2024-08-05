@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/07/04 12:41:12 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/05 14:56:07 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,39 @@ void	ft_destroy_img(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, data->all_img.north_wall.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.east_wall.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.south_wall.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.deco1.img_ptr);
+
+	mlx_destroy_image(data->mlx_ptr, data->all_img.zero.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.one.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.two.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.three.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.four.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.five.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.six.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.seven.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.eight.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.nine.img_ptr);
+
+	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[0].img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[1].img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[2].img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[3].img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[4].img_ptr);
+
+	mlx_destroy_image(data->mlx_ptr, data->all_img.floor.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.ceiling.img_ptr);
+	
+	mlx_destroy_image(data->mlx_ptr, data->all_img.door.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.door_open.img_ptr);
+
+	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
 }
 
 int	ft_close_window(t_data *data)
 {
 	int	i;
 
+	mlx_mouse_show(data->mlx_ptr, data->win_ptr);
 	ft_destroy_img(data);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
@@ -37,6 +64,7 @@ int	ft_close_window(t_data *data)
 	while (++i < data->map.height)
 		free(data->map.tab_map[i]);
 	free(data->map.tab_map);
+	ft_fps_counter(data, 1);
 	free(data);
 	exit(0);
 	return (0);

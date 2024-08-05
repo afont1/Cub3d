@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:58:18 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 11:43:19 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:27:28 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ struct	s_player
 	double	angle;
 	double	speed;
 	double	angle_step;
+	double	rot_speed;
 };
 
 struct	s_map

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 11:45:56 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 14:33:23 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_mouvement(t_data *data);
 void	ft_display_fps4(t_data *data, char *fps);
 void	ft_display_fps5(t_data *data, char *fps);
 void	ft_display_fps6(t_data *data, char *fps);
-void	ft_fps_counter(t_data *data);
+void	ft_fps_counter(t_data *data, int flag);
 void	ft_display_fps3(t_data *data, char *fps);
 void	ft_display_fps2(t_data *data, char *fps);
 void	ft_display_fps1(t_data *data, char *fps);
@@ -89,6 +89,8 @@ void	ft_door(t_data *data, double move_speed, int flag);
 int		ft_dist_int(int ax, int ay, int bx, int by);
 int		ft_check_color(t_data *data, int map_x, int map_y, int tex_x, int tex_y);
 int		ft_collision(t_data *data, int map_x, int map_y);
+int		ft_mouse_hook(int x, int y, t_data *data);
+void	ft_turn_player(t_data *data, double rot_speed, int flag);
 
 // void	init_floor_ray(t_data *data, t_floor_ray *fr, int y);
 // void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);

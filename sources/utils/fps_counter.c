@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 16:24:02 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 01:48:21 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 14:47:27 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,31 @@ void	ft_display_fps3(t_data *data, char *fps)
 	ft_display_fps6(data, fps);
 }
 
-void	ft_fps_counter(t_data *data)
+void	ft_fps_counter(t_data *data, int flag)
 {
 	static double	diff;
 	static char		*fps;
 
+	if (flag && fps)
+	{
+		free(fps);
+		return ;
+	}
 	diff += data->elapsed_time;
-	if (!fps)
-		fps = ft_itoa((int)(1000.0 / data->elapsed_time));
 	if (diff >= 1000)
 	{
+		if (fps)
+			free(fps);
 		fps = ft_itoa((int)(1000.0 / data->elapsed_time));
 		diff = 0;
 	}
-	if (ft_strlen(fps) >= 1)
-		ft_display_fps1(data, fps);
-	if (ft_strlen(fps) >= 2)
-		ft_display_fps2(data, fps);
-	if (ft_strlen(fps) >= 3)
-		ft_display_fps3(data, fps);
+	if (fps)
+	{
+		if (ft_strlen(fps) >= 1)
+			ft_display_fps1(data, fps);
+		if (ft_strlen(fps) >= 2)
+			ft_display_fps2(data, fps);
+		if (ft_strlen(fps) >= 3)
+			ft_display_fps3(data, fps);
+	}
 }

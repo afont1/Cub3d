@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:27:49 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 00:25:35 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 15:03:15 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	ft_exit_map(t_data *data, char *str)
 {
-	int	i;
-
-	i = -1;
-	while (++i < data->map.height)
-		free(data->map.tab_map[i]);
-	free(data->map.tab_map);
+	free(data->all_img.north_wall.path);
+	free(data->all_img.south_wall.path);
+	free(data->all_img.west_wall.path);
+	free(data->all_img.east_wall.path);
 	free(data);
 	printf("%s", str);
 	exit(0);

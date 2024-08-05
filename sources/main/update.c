@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:13:42 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 01:23:17 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 14:33:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_update(t_data *data)
 		+ (end.tv_usec - start.tv_usec) / 1000.0;
 	ft_display_all(data);
 	ft_mouvement(data);
-	ft_fps_counter(data);
+	ft_fps_counter(data, 0);
 	return (0);
 }

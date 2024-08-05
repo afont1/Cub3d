@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:11:42 by afont             #+#    #+#             */
-/*   Updated: 2024/08/01 05:02:47 by bloisel          ###   ########.fr       */
+/*   Updated: 2024/08/05 13:40:48 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,20 @@ void	ft_sprint(t_data *data)
 
 void	ft_mouvement(t_data *data)
 {
-	double	rot_speed;
 	double	move_speed;
 
-	rot_speed = data->elapsed_time * data->player.angle_step;
+	data->player.rot_speed = data->elapsed_time * data->player.angle_step;
 	move_speed = data->elapsed_time * data->player.speed;
 	if (data->keys[UP])
 		ft_move_player(data, move_speed, 1);
 	if (data->keys[DOWN])
 		ft_move_player(data, move_speed, 0);
 	if (data->keys[RIGHT])
-		ft_turn_player(data, rot_speed, 1);
+		ft_turn_player(data, data->player.rot_speed, 1);
 	else if (!data->keys[LEFT])
 		data->player.angle_step = ANGLE_STEP;
 	if (data->keys[LEFT])
-		ft_turn_player(data, rot_speed, 0);
+		ft_turn_player(data, data->player.rot_speed, 0);
 	else if (!data->keys[RIGHT])
 		data->player.angle_step = ANGLE_STEP;
 	ft_sprint(data);
