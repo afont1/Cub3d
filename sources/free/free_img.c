@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:10:35 by afont             #+#    #+#             */
-/*   Updated: 2024/08/05 14:56:07 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/06 20:53:21 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_destroy_img(t_data *data)
+void	ft_destroy_img3(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->all_img.env_img.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.west_wall.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.north_wall.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.east_wall.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.south_wall.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.deco1.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.floor.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.ceiling.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.door.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.door_open.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
+}
 
+void	ft_destroy_img2(t_data *data)
+{
 	mlx_destroy_image(data->mlx_ptr, data->all_img.zero.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.one.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.two.img_ptr);
@@ -31,20 +33,23 @@ void	ft_destroy_img(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, data->all_img.seven.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.eight.img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.nine.img_ptr);
-
 	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[0].img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[1].img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[2].img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[3].img_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->all_img.weapon[4].img_ptr);
+	ft_destroy_img3(data);
+}
 
-	mlx_destroy_image(data->mlx_ptr, data->all_img.floor.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.ceiling.img_ptr);
-	
-	mlx_destroy_image(data->mlx_ptr, data->all_img.door.img_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->all_img.door_open.img_ptr);
-
-	mlx_destroy_image(data->mlx_ptr, data->map.img.img_ptr);
+void	ft_destroy_img(t_data *data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->all_img.env_img.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.west_wall.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.north_wall.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.east_wall.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.south_wall.img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->all_img.deco1.img_ptr);
+	ft_destroy_img2(data);
 }
 
 int	ft_close_window(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:58:18 by afont             #+#    #+#             */
-/*   Updated: 2024/08/05 13:27:28 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/06 21:45:01 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ struct	s_img
 	char		*addr;
 	float		x_ratio;
 	float		y_ratio;
-	int 		color;
+	int			color;
 	int			x;
 	int			y;
 	int			bits_per_pixel;
@@ -118,46 +118,6 @@ struct	s_map
 	t_img	img;
 };
 
-typedef struct s_floor_ray
-{
-	float	ray_dir_x0;
-	float	ray_dir_y0;
-	float	ray_dir_x1;
-	float	ray_dir_y1;
-	float	player_z;
-	float	row_distance;
-	float	floor_step_x;
-	float	floor_step_y;
-	float	floor_x;
-	float	floor_y;
-}	t_floor_ray;
-
-typedef struct s_wall_ray
-{
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	double	wall_x;
-	double	step;
-	double	tex_pos;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		tex_x;
-	int		tex_y;
-}	t_wall_ray;
-
 struct	s_data
 {
 	int			keys[256];
@@ -167,8 +127,44 @@ struct	s_data
 	t_player	player;
 	t_map		map;
 	t_all_img	all_img;
-	t_floor_ray	floor_ray;
-	t_wall_ray	wall_ray;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	double		wall_x;
+	double		step;
+	double		tex_pos;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
+	int			tex_y;
+	float		ray_dir_x0;
+	float		ray_dir_y0;
+	float		ray_dir_x1;
+	float		ray_dir_y1;
+	float		player_z;
+	float		row_distance;
+	float		floor_step_x;
+	float		floor_step_y;
+	float		floor_x;
+	float		floor_y;
+	int			y;
+	int			x;
+	int			p;
+	int			texture_x;
+	int			texture_y;
+	int			color;
 };
 
 #endif

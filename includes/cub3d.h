@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
+/*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 09:19:52 by afont             #+#    #+#             */
-/*   Updated: 2024/08/05 14:33:23 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/06 21:43:10 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,21 @@ void	ft_draw_weapon(t_data *data);
 int		ft_is_mouvement(t_data *data);
 void	ft_door(t_data *data, double move_speed, int flag);
 int		ft_dist_int(int ax, int ay, int bx, int by);
-int		ft_check_color(t_data *data, int map_x, int map_y, int tex_x, int tex_y);
+int		ft_check_color(t_data *data, int map_x, int map_y);
 int		ft_collision(t_data *data, int map_x, int map_y);
 int		ft_mouse_hook(int x, int y, t_data *data);
 void	ft_turn_player(t_data *data, double rot_speed, int flag);
 
-// void	init_floor_ray(t_data *data, t_floor_ray *fr, int y);
-// void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
-// void	draw_floor_row(t_data *data, t_floor_ray *fr, int y);
-// void	calculate_delta_distances(t_wall_ray *wr);
-// void	calculate_initial_distances(t_data *data, t_wall_ray *wr);
-// void	init_wall_ray(t_data *data, t_wall_ray *wr, int x);
-// void	calculate_wall_hit(t_data *data, t_wall_ray *wr);
-// void	calculate_wall_dimensions(t_wall_ray *wr);
-// void	draw_wall_stripe(t_data *data, t_wall_ray *wr, int x);
-// void	draw_wall_column(t_data *data, int x);
-// void	draw_wall(t_data *data);
-// void	ft_draw_ray(t_data *data);
+void	calculate_floor_params(t_data *data);
+void	render_floor_and_ceiling(t_data *data);
+void	initialize_ray_params(t_data *data);
+void	calculate_wall_distance_y(t_data *data);
+void	calculate_wall_params(t_data *data);
+void	calculate_texture_params(t_data *data);
+void	calculate_wall_distance_and_texture(t_data *data);
+void	render_wall(t_data *data);
+void	calculate_step_and_side_dist(t_data *data);
+void	perform_dda(t_data *data);
+void	calculate_wall_distance_x(t_data *data);
 
 #endif
