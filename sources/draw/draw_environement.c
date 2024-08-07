@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 10:21:53 by afont             #+#    #+#             */
-/*   Updated: 2024/06/28 08:45:18 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/07 17:04:08 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_sort_dist(t_data *data, t_coord dist, double ray_angle, int nbr_ray)
 {
+	(void)ray_angle;
 	if (dist.x < dist.y)
 	{
 		ft_init_wall(data, fish_eye(data, ray_angle, dist.x), nbr_ray, 0);
