@@ -6,7 +6,7 @@
 /*   By: afont <afont@student.42nice.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 09:41:45 by afont             #+#    #+#             */
-/*   Updated: 2024/08/03 12:29:59 by afont            ###   ########.fr       */
+/*   Updated: 2024/08/07 15:41:04 by afont            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 500000
 # endif
 
 char	*get_next_line(int fd);

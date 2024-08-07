@@ -4,7 +4,7 @@ OBJ_DIR = Objects
 OBJS = $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-NAME = cub3d
+NAME = cub3D
 LIB = libft/libft.a
 MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11
 OPTI_FLAGS = -Ofast -flto -march=native -funroll-loops -fexpensive-optimizations -finline-functions -fomit-frame-pointer

@@ -1,10 +1,7 @@
-trdyfguhiutrfdsysuatgftfgsifo
-
-NO                ./images/wall/pikachu.xpm
-SO  ./images/wall/pikachu.xpm
+NO ./images/wall/pikachu.xpm
+SO ./images/wall/pikachu.xpm
 EA ./images/wall/purplestone.xpm
 WE ./images/wall/red.xpm
-
 C 0,0,120
 F 0,120,011
 
